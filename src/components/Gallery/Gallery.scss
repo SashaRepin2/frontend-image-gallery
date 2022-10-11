@@ -1,0 +1,17 @@
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 256px);
+    grid-template-rows: repeat(4, 340px);
+    grid-auto-rows: min-content;
+    gap: 25px 15px;
+
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 25px 20px;
+    width: 100%;
+    min-height: 250px;
+
+    background-color: #3844b3;
+    border-radius: 10px;
+}

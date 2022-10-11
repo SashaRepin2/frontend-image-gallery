@@ -1,0 +1,19 @@
+.go-top-button {
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
+
+    padding: 10px;
+
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+
+    border: none;
+    background-color: #4745f0;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: #3c3aa3;
+    }
+}

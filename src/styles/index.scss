@@ -1,0 +1,39 @@
+@import url("./__variables.scss");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(138, 138, 247);
+}
+
+#root {
+    display: grid;
+    grid-template-rows: 1fr auto;
+
+    min-height: 100vh;
+
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../assets/images/bg.svg");
+}
+
+.content {
+    margin: 0 auto;
+    padding: 100px 50px;
+
+    width: 100%;
+    max-width: 1200px;
+
+    @media screen and (max-width: 425px) {
+        padding: 50px 20px;
+    }
+}
+
+.shadow {
+    box-shadow: 15px 15px 10px 0px #223c5033;
+}

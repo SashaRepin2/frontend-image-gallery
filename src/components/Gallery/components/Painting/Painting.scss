@@ -1,0 +1,49 @@
+.painting {
+    display: inline-flex;
+    flex-direction: column;
+
+    height: 340px;
+    width: 256px;
+
+    border-radius: 5px;
+
+    color: #fff;
+    background-color: #b8b8b8;
+
+    &__image {
+        overflow: hidden;
+
+        img {
+            max-height: 256px;
+            max-width: 256px;
+
+            object-fit: contain;
+            border-radius: 5px;
+        }
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        padding: 5px;
+    }
+
+    &__name {
+        width: fit-content;
+        font-size: 1.2rem;
+        background-color: #292929;
+        padding: 3px 5px;
+        border-radius: 5px;
+    }
+
+    &__created {
+    }
+
+    &__author {
+    }
+
+    &__location {
+    }
+}
