@@ -24,7 +24,7 @@ const Pagination: FC<IPaginataionProps> = ({
 
     return (
         <div className={"pagination"}>
-            {isNextAndPrev && <PaginationSlidePageButton />}
+            {/* {isNextAndPrev && <PaginationSlidePageButton />} */}
             {pageNumbers.map((number) => (
                 <PaginationPageButton
                     key={number}

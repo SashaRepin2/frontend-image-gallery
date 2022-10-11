@@ -13,16 +13,16 @@ const PaginationSlidePageButton: FC<IPaginationSlidePageButton> = ({
     content,
     changeCount,
     className = "pagination__slide-button",
-    onClick,
+    onChange,
 }) => {
-    const onChangePageHandler = () => {
-        changeCount(e);
-    };
+    // const onChangePageHandler = () => {
+    //     changeCount(e);
+    // };
 
     return (
         <button
             className={className}
-            onClick={onClick}
+            // onClick={onClick}
         >
             {content}
         </button>
