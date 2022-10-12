@@ -8,19 +8,24 @@ import "./Gallery.scss";
 
 export interface IGalleryProps {
     paintings: IPainting[];
+    emptyText?: string;
 }
 
-const Gallery: FC<IGalleryProps> = ({ paintings }) => {
+const Gallery: FC<IGalleryProps> = ({ paintings, emptyText = "Ничего не найдено" }) => {
     return (
-        <div className={"gallery shadow"}>
-            {paintings.length
-                ? paintings.map((painting) => (
-                      <Painting
-                          key={painting.id}
-                          painting={painting}
-                      />
-                  ))
-                : "Empty"}
+        <div className={"gallery-container"}>
+            {paintings.length ? (
+                <div className={"gallery"}>
+                    {paintings.map((painting) => (
+                        <Painting
+                            key={painting.id}
+                            painting={painting}
+                        />
+                    ))}
+                </div>
+            ) : (
+                <div className={"gallery__empty"}>{emptyText}</div>
+            )}
         </div>
     );
 };

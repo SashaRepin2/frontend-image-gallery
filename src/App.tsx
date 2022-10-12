@@ -18,7 +18,7 @@ function App() {
     return (
         <AppProvider>
             <BrowserRouter>
-                <main className={"content"}>
+                <main className={"content shadow"}>
                     <Routes>
                         <Route
                             path={ROUTES_HOME_PAGE}
