@@ -5,8 +5,8 @@ import "./PageButton.scss";
 interface IPaginationPageButtonProps {
     number: number;
     isActive?: boolean;
+    isDisabled?: boolean;
     styles?: React.CSSProperties;
-    className?: string;
     content?: ReactNode;
     onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, page: number) => void;
 }
@@ -17,18 +17,20 @@ const PaginationPageButton: FC<IPaginationPageButtonProps> = ({
     styles,
     content,
     isActive = false,
-    className = "pagination__button",
+    isDisabled = false,
 }) => {
     const onClickHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
         onClick(e, number);
 
     return (
         <button
-            className={className}
-            style={styles}
+            className={
+                isActive ? "pagination__button pagination__button_active" : "pagination__button"
+            }
+            disabled={isDisabled}
             onClick={onClickHandler}
         >
-            {content ?? number}
+            {content || number}
         </button>
     );
 };
