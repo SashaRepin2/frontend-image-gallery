@@ -12,6 +12,8 @@ module.exports = {
         "<THIRD_PARTY_MODULES>",
         // components
         "(components)|(.tsx$)",
+        //
+        "provider",
         // pages
         "pages",
         // hooks

@@ -1,0 +1,29 @@
+.field {
+    margin: 5px 0px;
+    padding: 3px 5px;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    cursor: default;
+
+    border-radius: 5px;
+    background-color: #256cc9;
+
+    color: #fff;
+    font-size: 18px;
+
+    &__title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-right: 5px;
+    }
+
+    &__value {
+        font-size: inherit;
+        font-weight: normal;
+    }
+}
