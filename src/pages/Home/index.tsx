@@ -49,6 +49,7 @@ const HomePage = () => {
                 currPage={page}
                 countPages={10}
                 onChange={onChangePageHandler}
+                isDisabledBtns={true}
             />
             {page}
         </>
