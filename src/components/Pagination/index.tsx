@@ -24,16 +24,16 @@ const Pagination: FC<IPaginataionProps> = ({
 
     return (
         <div className={"pagination"}>
-            {/* {isNextAndPrev && <PaginationSlidePageButton />} */}
+            {isNextAndPrev && <PaginationSlidePageButton content={"<"} />}
             {pageNumbers.map((number) => (
                 <PaginationPageButton
                     key={number}
-                    content={<div>{`Page: ${number + 1}`}</div>}
-                    number={number}
-                    isActive={currPage === number}
+                    number={number + 1}
+                    isActive={currPage === number + 1}
                     onClick={onChange}
                 />
             ))}
+            {isNextAndPrev && <PaginationSlidePageButton content={">"} />}
         </div>
     );
 };
