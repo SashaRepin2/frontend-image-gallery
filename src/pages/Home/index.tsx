@@ -45,12 +45,14 @@ const HomePage = () => {
     return (
         <>
             <Gallery paintings={state.paintings} />
-            <Pagination
-                currPage={page}
-                countPages={10}
-                onChange={onChangePageHandler}
-                isDisabledBtns={true}
-            />
+            <div className={"pagination-container"}>
+                <Pagination
+                    currPage={page}
+                    countPages={10}
+                    onChange={onChangePageHandler}
+                    isDisabledBtns={true}
+                />
+            </div>
             {page}
         </>
     );
