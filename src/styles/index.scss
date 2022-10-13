@@ -23,11 +23,14 @@ body {
 }
 
 .content {
-    margin: 0 auto;
-    padding: 100px 50px;
+    margin: 100px auto;
+    padding: 25px 30px;
 
     width: 100%;
     max-width: 1200px;
+
+    background-color: #3844b3;
+    border-radius: 10px;
 
     @media screen and (max-width: 425px) {
         padding: 50px 20px;
@@ -36,4 +39,39 @@ body {
 
 .shadow {
     box-shadow: 15px 15px 10px 0px #223c5033;
+}
+
+// SCROLL BAR
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #2b6be9 #b5ceff;
+}
+
+*::-webkit-scrollbar {
+    width: 15px;
+}
+*::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #b5ceff;
+}
+
+*::-webkit-scrollbar-track:hover {
+    background-color: #b5ceff;
+}
+
+*::-webkit-scrollbar-track:active {
+    background-color: #b5ceff;
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #2053b8;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: #0c06a3;
+}
+
+*::-webkit-scrollbar-thumb:active {
+    background-color: #0f08ce;
 }
