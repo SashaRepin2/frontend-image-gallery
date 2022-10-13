@@ -28,6 +28,7 @@ const paintingReducer = (
                 ...state,
                 paintings: [...state.paintings, action.payload],
             };
+
         default:
             return state;
     }
