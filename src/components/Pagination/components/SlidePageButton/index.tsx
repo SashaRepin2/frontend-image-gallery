@@ -4,21 +4,20 @@ import "./SlidePageButton.scss";
 
 interface IPaginationSlidePageButton {
     content: ReactNode;
-    // onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, page: number) => void;
+    isDisabled?: boolean;
+    onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const PaginationSlidePageButton: FC<IPaginationSlidePageButton> = ({
     content,
-    // onClick,
+    isDisabled = false,
+    onClick,
 }) => {
-    // const onChangePageHandler = () => {
-    //     onClick(e: Event);
-    // };
-
     return (
         <button
             className={"pagination__slide-button"}
-            // onClick={onClick}
+            disabled={isDisabled}
+            onClick={onClick}
         >
             {content}
         </button>

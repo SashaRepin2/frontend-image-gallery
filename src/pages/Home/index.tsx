@@ -53,7 +53,6 @@ const HomePage = () => {
                     isDisabledBtns={true}
                 />
             </div>
-            {page}
         </>
     );
 };
