@@ -22,12 +22,12 @@ const Pagination: FC<IPaginataionProps> = ({
 }) => {
     const pageNumbers = [...Array<number>(countPages).keys()];
 
-    const onClickPrevHanlder = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const onClickPrevHandlder = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         if (currPage <= 1) return;
         onChange(event, currPage - 1);
     };
 
-    const onClickNextHanlder = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const onClickNextHandler = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         if (currPage >= countPages) return;
         onChange(event, currPage + 1);
     };
@@ -37,7 +37,7 @@ const Pagination: FC<IPaginataionProps> = ({
             {isShowNextAndPrev && (
                 <PaginationSlidePageButton
                     content={"<"}
-                    onClick={onClickPrevHanlder}
+                    onClick={onClickPrevHandlder}
                     isDisabled={currPage <= 1}
                 />
             )}
@@ -53,7 +53,7 @@ const Pagination: FC<IPaginataionProps> = ({
             {isShowNextAndPrev && (
                 <PaginationSlidePageButton
                     content={">"}
-                    onClick={onClickNextHanlder}
+                    onClick={onClickNextHandler}
                 />
             )}
         </div>
