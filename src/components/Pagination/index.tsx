@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, memo, useMemo } from "react";
 
 import PaginationPageButton from "./components/PageButton";
 import PaginationSlidePageButton from "./components/SlidePageButton";
@@ -9,7 +9,7 @@ export interface IPaginataionProps {
     countPages: number;
     currPage: number;
     isShowNextAndPrev?: boolean;
-    isDisabledBtns?: boolean;
+    isDisabled?: boolean;
     onChange: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, page: number) => void;
 }
 
@@ -17,9 +17,11 @@ const Pagination: FC<IPaginataionProps> = ({
     currPage,
     countPages,
     isShowNextAndPrev = true,
-    isDisabledBtns = false,
+    isDisabled = false,
     onChange,
 }) => {
+    console.log("render Gallery");
+
     const pageNumbers = [...Array<number>(countPages).keys()];
 
     const onClickPrevHandlder = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -32,27 +34,34 @@ const Pagination: FC<IPaginataionProps> = ({
         onChange(event, currPage + 1);
     };
 
+    const memoPages = useMemo(
+        () =>
+            pageNumbers.map((number) => (
+                <PaginationPageButton
+                    key={number}
+                    number={number + 1}
+                    isActive={currPage === number + 1}
+                    isDisabled={isDisabled}
+                    onClick={onChange}
+                />
+            )),
+        [countPages],
+    );
+
     return (
         <div className={"pagination"}>
             {isShowNextAndPrev && (
                 <PaginationSlidePageButton
                     content={"<"}
+                    isDisabled={currPage <= 1 || isDisabled}
                     onClick={onClickPrevHandlder}
-                    isDisabled={currPage <= 1}
                 />
             )}
-            {pageNumbers.map((number) => (
-                <PaginationPageButton
-                    key={number}
-                    number={number + 1}
-                    isActive={currPage === number + 1}
-                    isDisabled={isDisabledBtns}
-                    onClick={onChange}
-                />
-            ))}
+            {memoPages}
             {isShowNextAndPrev && (
                 <PaginationSlidePageButton
                     content={">"}
+                    isDisabled={currPage >= countPages || isDisabled}
                     onClick={onClickNextHandler}
                 />
             )}
@@ -60,4 +69,4 @@ const Pagination: FC<IPaginataionProps> = ({
     );
 };
 
-export default Pagination;
+export default memo(Pagination);
