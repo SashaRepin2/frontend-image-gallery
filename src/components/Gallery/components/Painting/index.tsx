@@ -1,5 +1,7 @@
 import React, { FC } from "react";
 
+import PaintingField from "./components";
+
 import IPainting from "@interfaces/IPainting";
 
 import "./Painting.scss";
@@ -18,10 +20,22 @@ const Painting: FC<IPaintingProps> = ({ painting }) => {
                 />
             </div>
             <div className={"painting__info"}>
-                <div className={"painting__name"}>{painting.name}</div>
-                <div className={"painting__location"}>{painting.location.location}</div>
-                <div className={"painting__author"}>{painting.author.name}</div>
-                <div className={"painting__created"}>{painting.created}</div>
+                <PaintingField
+                    title={"Название:"}
+                    value={painting.name}
+                />
+                <PaintingField
+                    title={"Год создания:"}
+                    value={painting.created}
+                />
+                <PaintingField
+                    title={"Автор:"}
+                    value={painting.author.name}
+                />
+                <PaintingField
+                    title={"Местоположение:"}
+                    value={painting.location.location}
+                />
             </div>
         </div>
     );

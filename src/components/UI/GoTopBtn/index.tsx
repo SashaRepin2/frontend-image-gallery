@@ -35,13 +35,13 @@ const GoTopBtn: FC<IGoTopBtnProps> = ({ content = "Навверх", showWhenYPos
         });
     }
 
-    return isShow ? (
+    return (
         <button
-            className={"go-top-button"}
+            className={isShow ? "go-top" : "go-top hidden"}
             onClick={onScrollTopHandler}
         >
             {content}
         </button>
-    ) : null;
+    );
 };
 export default GoTopBtn;
