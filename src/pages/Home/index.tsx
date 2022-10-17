@@ -84,7 +84,6 @@ const HomePage = () => {
                     onChange={onChangePageHandler}
                 />
             </div>
-            {page}
         </>
     );
 };

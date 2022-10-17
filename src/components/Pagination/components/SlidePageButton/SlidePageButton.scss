@@ -10,5 +10,10 @@
         color: #fff;
         font-size: 18px;
         font-weight: bold;
+
+        &:hover{
+            cursor: pointer;
+            background-color: #1f2131;
+        }
     }
 }
