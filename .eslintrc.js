@@ -68,9 +68,11 @@ module.exports = {
         "object-curly-newline": [
             "error",
             {
-                ObjectExpression: { multiline: true, minProperties: 1 },
+                ObjectExpression: { multiline: true, minProperties: 2 },
                 ObjectPattern: { multiline: true },
             },
         ],
+        "object-property-newline": ["warn"],
+        "function-call-argument-newline": ["error", "consistent"],
     },
 };

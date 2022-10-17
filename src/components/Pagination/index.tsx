@@ -10,7 +10,10 @@ export interface IPaginataionProps {
     currPage: number;
     isNextAndPrev?: boolean;
     disabled?: boolean;
-    onChange: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, page: number) => void;
+    onChange: (
+        event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+        page: number,
+    ) => void;
 }
 
 const Pagination: FC<IPaginataionProps> = ({

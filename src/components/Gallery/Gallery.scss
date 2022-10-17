@@ -1,27 +1,8 @@
 .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 256px);
-    grid-template-rows: repeat(4, 340px);
-    grid-auto-rows: min-content;
-    gap: 25px 15px;
-
-    justify-content: center;
-    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 
     padding: 10px 15px;
-    width: 100%;
     min-height: 250px;
-
-    &__empty {
-        margin: 0 auto;
-        padding: 15px 10px;
-
-        text-align: center;
-        border-radius: 10px;
-        background-color: #1c2469;
-
-        color: #fff;
-        font-size: 24px;
-        font-weight: bold;
-    }
 }

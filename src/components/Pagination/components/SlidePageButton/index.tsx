@@ -6,7 +6,10 @@ interface IPaginationSlidePageButton {
     content: ReactNode;
     changeCount: number;
     className?: string;
-    onChange: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, page: number) => void;
+    onChange: (
+        event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+        page: number,
+    ) => void;
 }
 
 const PaginationSlidePageButton: FC<IPaginationSlidePageButton> = ({
