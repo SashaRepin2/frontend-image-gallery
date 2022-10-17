@@ -20,7 +20,7 @@ const paintingReducer = (
         case PAINTINGS_ADD_PAINTINGS:
             return {
                 ...state,
-                paintings: [...state.paintings, ...action.payload],
+                paintings: [...action.payload],
             };
 
         case PAINTINGS_ADD_PAINTING:

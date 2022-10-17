@@ -1,7 +1,7 @@
 module.exports = {
     trailingComma: "all",
     semi: true,
-    printWidth: 100,
+    printWidth: 80,
     tabWidth: 4,
     endOfLine: "auto",
     bracketSpacing: true,
@@ -12,6 +12,8 @@ module.exports = {
         "<THIRD_PARTY_MODULES>",
         // components
         "(components)|(.tsx$)",
+        //
+        "provider",
         // pages
         "pages",
         // hooks
