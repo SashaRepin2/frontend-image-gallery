@@ -4,7 +4,12 @@ import "./SlidePageButton.scss";
 
 interface IPaginationSlidePageButton {
     content: ReactNode;
-    // onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, page: number) => void;
+    changeCount: number;
+    className?: string;
+    onChange: (
+        event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+        page: number,
+    ) => void;
 }
 
 const PaginationSlidePageButton: FC<IPaginationSlidePageButton> = ({
