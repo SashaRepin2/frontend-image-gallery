@@ -20,23 +20,24 @@ const Pagination: FC<IPaginataionProps> = ({
     currPage,
     countPages,
     isNextAndPrev = true,
-    disabled = false,
+    isDisabledBtns = false,
     onChange,
 }) => {
     const pageNumbers = [...Array<number>(countPages).keys()];
 
     return (
         <div className={"pagination"}>
-            {/* {isNextAndPrev && <PaginationSlidePageButton />} */}
+            {isNextAndPrev && <PaginationSlidePageButton content={"<"} />}
             {pageNumbers.map((number) => (
                 <PaginationPageButton
                     key={number}
-                    content={<div>{`Page: ${number + 1}`}</div>}
-                    number={number}
-                    isActive={currPage === number}
+                    number={number + 1}
+                    isActive={currPage === number + 1}
+                    isDisabled={isDisabledBtns}
                     onClick={onChange}
                 />
             ))}
+            {isNextAndPrev && <PaginationSlidePageButton content={">"} />}
         </div>
     );
 };

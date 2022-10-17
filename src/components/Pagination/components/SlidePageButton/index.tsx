@@ -14,17 +14,15 @@ interface IPaginationSlidePageButton {
 
 const PaginationSlidePageButton: FC<IPaginationSlidePageButton> = ({
     content,
-    changeCount,
-    className = "pagination__slide-button",
-    onChange,
+    // onClick,
 }) => {
     // const onChangePageHandler = () => {
-    //     changeCount(e);
+    //     onClick(e: Event);
     // };
 
     return (
         <button
-            className={className}
+            className={"pagination__slide-button"}
             // onClick={onClick}
         >
             {content}
