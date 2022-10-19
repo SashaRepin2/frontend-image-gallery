@@ -13,7 +13,7 @@ interface IGetPaintingResponse {
 
 const instanceAxios = axios.create({ baseURL: "http://localhost:2000/api/" });
 
-export class API {
+export default class rootApi {
     static getPaintings(page?: number, limits?: number, search?: string) {
         return instanceAxios
             .get<IGetPaintingResponse>("/paintings", {

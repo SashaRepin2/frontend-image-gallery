@@ -7,7 +7,9 @@ export interface IPaintingFieldProps {
     value: ReactNode;
 }
 
-const PaintingField: FC<IPaintingFieldProps> = ({ title, value }) => {
+const PaintingField: FC<IPaintingFieldProps> = (props) => {
+    const { title, value } = props;
+
     return (
         <div className="field">
             <div className={"field__title"}>{title}</div>

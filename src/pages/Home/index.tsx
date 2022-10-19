@@ -2,19 +2,20 @@ import { useCallback, useContext, useEffect, useState } from "react";
 
 import { paintingsAddPaintings } from "@context/actions/paintings";
 import AppContext from "@context/index";
+import ReactPaginate from "react-paginate";
 
 import Gallery from "@components/Gallery";
 import Pagination from "@components/Pagination";
 import Input from "@components/UI/Input";
 import Select from "@components/UI/Select";
 
-import { API } from "@api/API";
+import rootApi from "@api/rootApi";
 
 import "./Home.scss";
 
 const HomePage = () => {
     const { state, dispatch } = useContext(AppContext);
-    const [page, setPage] = useState<number>(1);
+    const [page, setPage] = useState<number>(0);
     const [searchValue, setSearchValue] = useState<string>("");
 
     const onChangeInputHandler = useCallback(
@@ -25,17 +26,17 @@ const HomePage = () => {
     );
 
     const onChangePageHandler = useCallback(
-        (
-            event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-            page: number,
-        ) => {
-            setPage(page);
+        (selectedItem: { selected: number }) => {
+            console.log(selectedItem);
+
+            setPage(selectedItem.selected);
         },
         [setPage],
     );
 
     useEffect(() => {
-        API.getPaintings()
+        rootApi
+            .getPaintings(page + 1)
             .then((paintings) => {
                 dispatch(paintingsAddPaintings(paintings.data));
             })
@@ -46,37 +47,17 @@ const HomePage = () => {
 
     return (
         <>
-            <div
-                style={{
-                    width: "fit-content",
-                    margin: "10px auto",
-                }}
-            >
-                <Input
-                    value={searchValue}
-                    changeValue={onChangeInputHandler}
-                    placeholder={"Девятый вал"}
-                    label={"Введите название картины"}
-                    id={"search-gallery "}
-                    name={"search"}
-                />
-                <Select
-                    options={[
-                        {
-                            name: "first",
-                            value: "2",
-                        },
-                    ]}
-                />
-            </div>
             <Gallery paintings={state.paintings} />
-            <div className={"pagination-container"}>
-                <Pagination
-                    currPage={page}
-                    countPages={10}
-                    onChange={onChangePageHandler}
-                />
-            </div>
+            <ReactPaginate
+                pageCount={10}
+                forcePage={page}
+                onPageChange={onChangePageHandler}
+                containerClassName={"pagination"}
+                pageLinkClassName={"pagination__page"}
+                previousLinkClassName={"pagination__page"}
+                nextLinkClassName={"pagination__page"}
+                activeLinkClassName={"pagination__page_active"}
+            />
         </>
     );
 };

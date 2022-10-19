@@ -1,7 +1,30 @@
-.pagination-container {
-    margin: 15px auto;
+// .pagination-container {
+//     margin: 15px auto;
 
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+
+.pagination {
+    box-sizing: border-box;
+    margin: 15px 0;
+    list-style: none;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 1.2rem;
+    gap: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+
+    &__page {
+        padding: 8px 15px;
+        border-radius: 10px;
+        background-color: rgb(92, 101, 233);
+
+        &_active {
+            background-color: rgb(35, 42, 141);
+        }
+    }
 }
