@@ -8,7 +8,7 @@ import Pagination from "@components/Pagination";
 import Input from "@components/UI/Input";
 import Select from "@components/UI/Select";
 
-import IPainting from "@interfaces/IPainting";
+import { API } from "@api/API";
 
 import "./Home.scss";
 
@@ -25,31 +25,24 @@ const HomePage = () => {
     );
 
     const onChangePageHandler = useCallback(
-        (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, page: number) => {
+        (
+            event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+            page: number,
+        ) => {
             setPage(page);
         },
         [setPage],
     );
 
     useEffect(() => {
-        getPaintings();
-    }, [page]);
-
-    function getPaintings() {
-        fetch(`http://localhost:2000/api/paintings?page=${page}&search=${searchValue}`, {
-            method: "GET",
-            mode: "cors",
-        })
-            .then((response) => response.json())
-            .then((paitings) => {
-                const data = paitings.data;
-                dispatch(paintingsAddPaintings(data as IPainting[]));
+        API.getPaintings()
+            .then((paintings) => {
+                dispatch(paintingsAddPaintings(paintings.data));
             })
-            .catch((err) => {
-                const message = (err as Error).message;
-                console.log(message);
+            .catch((error) => {
+                console.log(error);
             });
-    }
+    }, [page]);
 
     return (
         <>

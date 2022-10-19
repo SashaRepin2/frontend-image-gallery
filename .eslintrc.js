@@ -72,7 +72,6 @@ module.exports = {
                 ObjectPattern: { multiline: true },
             },
         ],
-        "object-property-newline": ["warn"],
         "function-call-argument-newline": ["error", "consistent"],
     },
 };

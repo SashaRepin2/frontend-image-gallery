@@ -1,6 +1,9 @@
 import IPainting from "@interfaces/IPainting";
 
-import { PAINTINGS_ADD_PAINTING, PAINTINGS_ADD_PAINTINGS } from "../actions/paintings";
+import {
+    PAINTINGS_ADD_PAINTING,
+    PAINTINGS_ADD_PAINTINGS,
+} from "../actions/paintings";
 
 export interface IPaintingsState {
     paintings: IPainting[];

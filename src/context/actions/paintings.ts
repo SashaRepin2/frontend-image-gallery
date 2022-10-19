@@ -8,15 +8,21 @@ export const PAINTINGS_UPDATE = "PAINTINGS/UPDATE";
 
 type TAction<TPayload> = { type: string; payload: TPayload };
 
-export function createAction<TPayload>(type: string): (payload: TPayload) => TAction<TPayload> {
+export function createAction<TPayload>(
+    type: string,
+): (payload: TPayload) => TAction<TPayload> {
     return (payload: TPayload) => ({
         type,
         payload,
     });
 }
 
-export const paintingsAddPaintings = createAction<IPainting[]>(PAINTINGS_ADD_PAINTINGS);
-export const paintingsAddPainting = createAction<IPainting>(PAINTINGS_ADD_PAINTING);
+export const paintingsAddPaintings = createAction<IPainting[]>(
+    PAINTINGS_ADD_PAINTINGS,
+);
+export const paintingsAddPainting = createAction<IPainting>(
+    PAINTINGS_ADD_PAINTING,
+);
 export const paintingsUpdate = createAction<IPaintingsState>(PAINTINGS_UPDATE);
 
 export type PaintingsActions =

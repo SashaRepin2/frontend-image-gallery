@@ -1,16 +1,14 @@
 .painting {
     display: inline-flex;
     flex-direction: column;
-
     height: 340px;
     width: 256px;
 
+    background-color: #81b0ee;
     border-radius: 5px;
-
     color: #fff;
     font-size: 18px;
     font-weight: bold;
-    background-color: #81b0ee;
 
     &__image {
         overflow: hidden;
@@ -19,16 +17,15 @@
             max-height: 256px;
             max-width: 256px;
 
-            object-fit: contain;
             border-radius: 5px;
+            object-fit: contain;
         }
     }
 
     &__info {
+        padding: 5px;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-
-        padding: 5px;
     }
 }

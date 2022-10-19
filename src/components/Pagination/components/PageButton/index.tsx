@@ -8,7 +8,10 @@ interface IPaginationPageButtonProps {
     isDisabled?: boolean;
     styles?: React.CSSProperties;
     content?: ReactNode;
-    onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, page: number) => void;
+    onClick: (
+        e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+        page: number,
+    ) => void;
 }
 
 const PaginationPageButton: FC<IPaginationPageButtonProps> = ({
@@ -19,13 +22,16 @@ const PaginationPageButton: FC<IPaginationPageButtonProps> = ({
     isActive = false,
     isDisabled = false,
 }) => {
-    const onClickHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
-        onClick(e, number);
+    const onClickHandler = (
+        e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    ) => onClick(e, number);
 
     return (
         <button
             className={
-                isActive ? "pagination__button pagination__button_active" : "pagination__button"
+                isActive
+                    ? "pagination__button pagination__button_active"
+                    : "pagination__button"
             }
             disabled={isDisabled}
             onClick={onClickHandler}

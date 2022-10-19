@@ -7,7 +7,11 @@ import GoTopBtn from "@components/UI/GoTopBtn";
 
 import AppProvider from "@provider/AppProivder";
 
-import { ROUTES_GALLERY_PAGE, ROUTES_HOME_PAGE, ROUTES_NOT_FOUND } from "@consts/routes";
+import {
+    ROUTES_GALLERY_PAGE,
+    ROUTES_HOME_PAGE,
+    ROUTES_NOT_FOUND,
+} from "@consts/routes";
 
 import "./styles/index.scss";
 

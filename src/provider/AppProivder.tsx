@@ -1,7 +1,9 @@
 import { FC, ReactNode, useReducer } from "react";
 
 import AppContext from "@context/index";
-import paintingReducer, { initPaintingsState } from "@context/reducers/paintings";
+import paintingReducer, {
+    initPaintingsState,
+} from "@context/reducers/paintings";
 
 interface IAppProviderProps {
     children: ReactNode;

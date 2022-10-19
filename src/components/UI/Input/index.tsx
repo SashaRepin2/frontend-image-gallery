@@ -10,7 +10,9 @@ type TInputStyles = {
 
 interface IInputProps {
     value: string;
-    changeValue: (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+    changeValue: (
+        event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+    ) => void;
     placeholder?: string;
     type?: string;
     className?: string;

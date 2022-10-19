@@ -7,7 +7,10 @@ interface IGoTopBtnProps {
     showWhenYPos?: number;
 }
 
-const GoTopBtn: FC<IGoTopBtnProps> = ({ content = "Навверх", showWhenYPos = 100 }) => {
+const GoTopBtn: FC<IGoTopBtnProps> = ({
+    content = "Навверх",
+    showWhenYPos = 100,
+}) => {
     const [isShow, setIsShow] = useState<boolean>(false);
 
     useEffect(() => {
@@ -37,7 +40,7 @@ const GoTopBtn: FC<IGoTopBtnProps> = ({ content = "Навверх", showWhenYPos
 
     return (
         <button
-            className={isShow ? "go-top" : "go-top hidden"}
+            className={isShow ? "go-top" : "go-top go-top_hidden"}
             onClick={onScrollTopHandler}
         >
             {content}

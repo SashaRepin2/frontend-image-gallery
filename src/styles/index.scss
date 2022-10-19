@@ -1,4 +1,4 @@
-@import url("./__variables.scss");
+// @import url("./variables/colors.scss");
 
 * {
     margin: 0;
@@ -13,9 +13,7 @@ body {
 #root {
     display: grid;
     grid-template-rows: 1fr auto;
-
     min-height: 100vh;
-
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -25,10 +23,8 @@ body {
 .content {
     margin: 100px auto;
     padding: 25px 30px;
-
     width: 100%;
     max-width: 1200px;
-
     background-color: #3844b3;
     border-radius: 10px;
 
