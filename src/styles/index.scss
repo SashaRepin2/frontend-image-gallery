@@ -1,4 +1,4 @@
-// @import url("./variables/colors.scss");
+@import url("./variables/theme.scss");
 
 * {
     margin: 0;
@@ -40,7 +40,7 @@ body {
 // SCROLL BAR
 * {
     scrollbar-width: thin;
-    scrollbar-color: #2b6be9 #b5ceff;
+    scrollbar-color: #2b6be9 $scroll-bar-bg-light;
 }
 
 *::-webkit-scrollbar {
@@ -48,26 +48,26 @@ body {
 }
 *::-webkit-scrollbar-track {
     border-radius: 5px;
-    background-color: #b5ceff;
+    background-color: $scroll-bar-bg-light;
 }
 
 *::-webkit-scrollbar-track:hover {
-    background-color: #b5ceff;
+    background-color: $scroll-bar-bg-light;
 }
 
 *::-webkit-scrollbar-track:active {
-    background-color: #b5ceff;
+    background-color: $scroll-bar-bg-light;
 }
 
 *::-webkit-scrollbar-thumb {
     border-radius: 5px;
-    background-color: #2053b8;
+    background-color: $scroll-thumb-bg-light;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background-color: #0c06a3;
+    background-color: $scroll-thumb-bg-light-hover;
 }
 
 *::-webkit-scrollbar-thumb:active {
-    background-color: #0f08ce;
+    background-color: $scroll-thumb-bg-light-actived;
 }
