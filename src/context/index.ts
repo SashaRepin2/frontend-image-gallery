@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useReducer } from "react";
 
 import { IPaintingsState, initPaintingsState } from "./reducers/paintings";
 
@@ -16,7 +16,7 @@ export const createAction =
 
 const AppContext = createContext<{
     state: IPaintingsState;
-    dispatch: React.Dispatch<{ type: string; payload: any }>;
+    dispatch: React.Dispatch<IAction<any>>;
 }>({
     state: initPaintingsState,
     dispatch: () => undefined,

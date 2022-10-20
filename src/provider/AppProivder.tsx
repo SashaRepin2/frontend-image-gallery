@@ -1,6 +1,6 @@
 import { FC, ReactNode, useReducer } from "react";
 
-import AppContext from "@context/index";
+import AppContext, { IAction } from "@context/index";
 import paintingReducer, {
     initPaintingsState,
 } from "@context/reducers/paintings";
@@ -10,7 +10,15 @@ interface IAppProviderProps {
 }
 
 const AppProvider: FC<IAppProviderProps> = ({ children }) => {
-    const [state, dispatch] = useReducer(paintingReducer, initPaintingsState);
+    const [state, _dispatch] = useReducer(paintingReducer, initPaintingsState);
+
+    const dispatch = (action: IAction<any>) => {
+        if (action instanceof Function) {
+            action(_dispatch);
+        } else {
+            _dispatch(action);
+        }
+    };
 
     return (
         <AppContext.Provider

@@ -6,26 +6,24 @@ import IPainting from "@interfaces/IPainting";
 
 interface IGetPaintingResponse {
     data: IPainting[];
-    headers: {
-        "Content-type": "application/json";
-    };
 }
 
-const instanceAxios = axios.create({ baseURL: "http://localhost:2000/api/" });
+const instanceAxios = axios.create({
+    baseURL: "http://localhost:2000/api/",
+    headers: {
+        "Content-type": "application/json",
+    },
+});
 
 export default class rootApi {
-    static getPaintings(page?: number, limits?: number, search?: string) {
-        return instanceAxios
-            .get<IGetPaintingResponse>("/paintings", {
-                params: {
-                    page,
-                    limits,
-                    search,
-                },
-            })
-            .then((response) => {
-                return response.data;
-            });
+    static async getPaintings(page?: number, limits?: number, search?: string) {
+        return await instanceAxios.get<IGetPaintingResponse>("/paintings", {
+            params: {
+                page,
+                limits,
+                search,
+            },
+        });
     }
 
     static getPainting(id: number) {
@@ -39,9 +37,7 @@ export default class rootApi {
     }
 
     static getAuthor(id: number) {
-        return instanceAxios.get<IAuthor>(`/authors/${id}`).then((response) => {
-            return response.data;
-        });
+        return instanceAxios.get<IAuthor>(`/authors/${id}`);
     }
 
     static getLocations() {

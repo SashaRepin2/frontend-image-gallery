@@ -1,8 +1,20 @@
 // main
 
 // font-sizes
-// $fs-p
+$fs-primary: 18px;
 
-// // scrollbar
-// $scrollbar-bg-light: ;
-// $scrollbar-bg-dark:
+$fc-primary: #fff;
+$fc-secondary: #000;
+
+// scrollbar
+$scroll-bar-bg-light: #b5ceff;
+$scroll-bar-bg-dark: #3a5180;
+
+$scroll-thumb-bg-light: #2053b8;
+$scroll-thumb-bg-dark: #0d2453;
+
+$scroll-thumb-bg-light-hover: #0c06a3;
+$scroll-thumb-bg-dark-hover: #06043b;
+
+$scroll-thumb-bg-dark-active: #1b1a33;
+$scroll-thumb-bg-light-active: #0f08ce;
