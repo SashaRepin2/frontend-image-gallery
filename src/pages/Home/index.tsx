@@ -5,15 +5,14 @@ import ReactPaginate from "react-paginate";
 
 import Gallery from "@components/Gallery";
 
-import usePagination from "@hooks/usePagination";
 import usePaintings from "@hooks/usePaintings";
 
 import "./Home.scss";
 
 const HomePage = () => {
-    const { state, dispatch } = useContext(AppContext);
+    const { state } = useContext(AppContext);
     const [page, setPage] = useState<number>(0);
-    const { isLoading, isError, paintings } = usePaintings(page);
+    const { isLoading } = usePaintings(page);
 
     const onChangePageHandler = useCallback(
         (selectedItem: { selected: number }) => {
@@ -25,15 +24,11 @@ const HomePage = () => {
 
     return (
         <>
-            {isLoading || isError ? (
+            {isLoading ? (
                 "Loading"
             ) : (
                 <>
-                    {paintings?.length ? (
-                        <Gallery paintings={paintings} />
-                    ) : (
-                        "Not found"
-                    )}
+                    <Gallery paintings={state.paintings} />
                     <ReactPaginate
                         pageCount={10}
                         forcePage={page}

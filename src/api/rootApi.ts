@@ -16,8 +16,8 @@ const instanceAxios = axios.create({
 });
 
 export default class rootApi {
-    static async getPaintings(page?: number, limits?: number, search?: string) {
-        return await instanceAxios.get<IGetPaintingResponse>("/paintings", {
+    static getPaintings(page?: number, limits?: number, search?: string) {
+        return instanceAxios.get<IGetPaintingResponse>("/paintings", {
             params: {
                 page,
                 limits,
@@ -31,9 +31,7 @@ export default class rootApi {
     }
 
     static getAuthors() {
-        return instanceAxios.get<IAuthor[]>(`/authors`).then((response) => {
-            return response.data;
-        });
+        return instanceAxios.get<IAuthor[]>(`/authors`);
     }
 
     static getAuthor(id: number) {
@@ -41,16 +39,10 @@ export default class rootApi {
     }
 
     static getLocations() {
-        return instanceAxios.get<ILocation[]>(`/locations`).then((response) => {
-            return response.data;
-        });
+        return instanceAxios.get<ILocation[]>(`/locations`);
     }
 
     static getLocation(id: number) {
-        return instanceAxios
-            .get<ILocation>(`/locations/${id}`)
-            .then((response) => {
-                return response.data;
-            });
+        return instanceAxios.get<ILocation>(`/locations/${id}`);
     }
 }

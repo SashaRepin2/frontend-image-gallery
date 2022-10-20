@@ -1,30 +1,33 @@
+import { useContext } from "react";
+
+import { paintingsAddPaintings } from "@context/actions/paintings";
+import AppContext from "@context/index";
 import { useQuery } from "@tanstack/react-query";
 
 import rootApi from "@api/rootApi";
 
 function usePaintings(page?: number, limits?: number, search?: string) {
-    const {
-        isLoading,
-        isError,
-        data: paintings,
-    } = useQuery(
+    const { dispatch } = useContext(AppContext);
+
+    const { data, isLoading, isError } = useQuery(
         ["paintings list"],
-        async () => {
-            const { data } = await rootApi.getPaintings(page, limits, search);
-            return data.data;
+        () => {
+            return rootApi.getPaintings(page, limits, search);
         },
         {
+            onSuccess: ({ data }) => {
+                dispatch(paintingsAddPaintings(data.data));
+            },
             onError: (error: any) => {
                 const { message } = error as Error;
-                console.log(message);
             },
         },
     );
 
     return {
+        data,
         isLoading,
         isError,
-        paintings,
     };
 }
 

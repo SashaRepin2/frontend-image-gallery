@@ -1,4 +1,4 @@
-@import url("./variables/theme.scss");
+@import "./variables/theme.scss";
 
 * {
     margin: 0;
@@ -69,5 +69,5 @@ body {
 }
 
 *::-webkit-scrollbar-thumb:active {
-    background-color: $scroll-thumb-bg-light-actived;
+    background-color: $scroll-thumb-bg-light-active;
 }
