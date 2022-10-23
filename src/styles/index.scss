@@ -53,10 +53,22 @@ body {
     &__page {
         padding: 8px 15px;
         border-radius: 10px;
-        background-color: rgb(92, 101, 233);
+        background-color: var(--pagination-page-bg-color);
 
         &_active {
-            background-color: rgb(35, 42, 141);
+            background-color: var(--pagination-page-bg-color-ative);
+        }
+
+        &_disabled {
+            pointer-events: none;
+            background-color: var(--pagination-page-bg-color-disabled);
+        }
+    }
+
+    &_disabled {
+        .pagination__page {
+            pointer-events: none;
+            background-color: var(--pagination-page-bg-color-disabled);
         }
     }
 }
@@ -64,7 +76,7 @@ body {
 // SCROLL BAR
 * {
     scrollbar-width: thin;
-    scrollbar-color: #2b6be9 var(--scroll-bar-bg-light);
+    scrollbar-color: var(--scroll-bar-bg-light) var(--scroll-thumb-bg-light);
 }
 
 *::-webkit-scrollbar {

@@ -1,25 +1,21 @@
 import { useContext, useState } from "react";
 
 import AppContext from "@context/index";
+import classNames from "classnames";
 import ReactPaginate from "react-paginate";
 
 import Gallery from "@components/Gallery";
 import Loader from "@components/UI/Loader";
 
+import usePagination from "@hooks/usePagination";
 import usePaintings from "@hooks/usePaintings";
 
 import "./Home.scss";
 
 const HomePage = () => {
     const { state } = useContext(AppContext);
-    const [page, setPage] = useState<number>(0);
+    const { page, onChangePageHandler } = usePagination(0);
     const { data, isLoading } = usePaintings(page + 1);
-
-    function onChangePageHandler(selectedItem: { selected: number }) {
-        if (isLoading) return false;
-
-        setPage(selectedItem.selected);
-    }
 
     return (
         <div className={"page-home shadow"}>
@@ -42,7 +38,9 @@ const HomePage = () => {
                         previousLabel={"<"}
                         nextLabel={">"}
                         onPageChange={onChangePageHandler}
-                        containerClassName={"pagination"}
+                        containerClassName={classNames("pagination", {
+                            pagination_disabled: isLoading,
+                        })}
                         pageLinkClassName={"pagination__page"}
                         previousLinkClassName={"pagination__page"}
                         nextLinkClassName={"pagination__page"}

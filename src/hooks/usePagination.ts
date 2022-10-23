@@ -1,12 +1,6 @@
 import { useCallback, useState } from "react";
 
-function usePagination({
-    initPage,
-    isDisabled = false,
-}: {
-    initPage: number;
-    isDisabled?: boolean;
-}) {
+function usePagination(initPage = 0, isDisabled = false) {
     const [page, setPage] = useState<number>(initPage);
 
     const onChangePageHandler = useCallback(
