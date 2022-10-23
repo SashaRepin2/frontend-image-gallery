@@ -1,7 +1,7 @@
 import React, { FC, memo, useMemo } from "react";
 
 import Painting from "./components/Painting";
-import Empty from "@components/UI/NotFound";
+import NotFound from "@components/UI/Empty";
 
 import IPainting from "@interfaces/IPainting";
 
@@ -31,9 +31,14 @@ const Gallery: FC<IGalleryProps> = (props) => {
             {memoPaintings.length ? (
                 <div className={"gallery"}>{memoPaintings}</div>
             ) : (
-                <Empty content={emptyText} />
+                <NotFound content={emptyText} />
             )}
         </div>
     );
 };
+
+Gallery.defaultProps = {
+    emptyText: "Картины не найдены",
+};
+
 export default memo(Gallery);

@@ -1,4 +1,6 @@
-import { FC, ReactNode, useEffect, useState } from "react";
+import { FC, ReactNode } from "react";
+
+import useScroll from "./hooks/useScroll";
 
 import "./GoTopBtn.scss";
 
@@ -7,36 +9,9 @@ interface IGoTopBtnProps {
     showWhenYPos?: number;
 }
 
-const GoTopBtn: FC<IGoTopBtnProps> = ({
-    content = "Навверх",
-    showWhenYPos = 100,
-}) => {
-    const [isShow, setIsShow] = useState<boolean>(false);
-
-    useEffect(() => {
-        const scrollHanlder = () => {
-            const yPos = window.scrollY;
-
-            if (yPos >= showWhenYPos) {
-                setIsShow(true);
-            } else {
-                setIsShow(false);
-            }
-        };
-
-        document.addEventListener("scroll", scrollHanlder);
-
-        return () => {
-            document.removeEventListener("scroll", scrollHanlder);
-        };
-    }, []);
-
-    function onScrollTopHandler() {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    }
+const GoTopBtn: FC<IGoTopBtnProps> = (props) => {
+    const { content = "Навверх", showWhenYPos = 100 } = props;
+    const { isShow, onScrollTopHandler } = useScroll(showWhenYPos);
 
     return (
         <button

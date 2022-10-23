@@ -23,18 +23,20 @@ interface IInputProps {
     styles?: TInputStyles;
 }
 
-const Input: FC<IInputProps> = ({
-    value,
-    changeValue,
-    placeholder,
-    styles,
-    ref,
-    label,
-    name,
-    id,
-    className = "input",
-    type = "text",
-}) => {
+const Input: FC<IInputProps> = (props) => {
+    const {
+        value,
+        changeValue,
+        placeholder,
+        styles,
+        ref,
+        label,
+        name,
+        id,
+        className = "input",
+        type = "text",
+    } = props;
+
     return (
         <div
             className={"input-container"}

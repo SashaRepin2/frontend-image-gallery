@@ -11,7 +11,11 @@
     font-size: 18px;
     font-weight: bold;
 
-    &_hidden:hover {
+    &:hover {
         background-color: #3c3aa3;
+    }
+
+    &_hidden {
+        display: none;
     }
 }

@@ -1,20 +1,19 @@
-// main
+//
+// $card-bg-light: ;
 
-// font
-$fs-primary: 18px;
+:root {
+    $body-bg-color: #8a8af7;
 
-$fc-primary: #fff;
-$fc-secondary: #000;
+    // font
+    --fs-primary: 18px;
+    --fc-primary: #fff;
+    --fc-secondary: rgb(104, 125, 245);
 
-// scrollbar
-$scroll-bar-bg-light: #b5ceff;
-$scroll-bar-bg-dark: #3a5180;
+    --loader-color: #7db5ee;
 
-$scroll-thumb-bg-light: #2053b8;
-$scroll-thumb-bg-dark: #0d2453;
-
-$scroll-thumb-bg-light-hover: #0c06a3;
-$scroll-thumb-bg-dark-hover: #06043b;
-
-$scroll-thumb-bg-dark-active: #1b1a33;
-$scroll-thumb-bg-light-active: #0f08ce;
+    // scrollbar
+    --scroll-bar-bg-light: #b5ceff;
+    --scroll-thumb-bg-light: #2053b8;
+    --scroll-thumb-bg-light-hover: #0c06a3;
+    --scroll-thumb-bg-light-active: #0f08ce;
+}

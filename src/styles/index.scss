@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: rgb(138, 138, 247);
+    background-color: var(--body-bg-color);
 }
 
 #root {
@@ -22,14 +22,11 @@ body {
 
 .content {
     margin: 100px auto;
-    padding: 25px 30px;
     width: 100%;
     max-width: 1200px;
-    background-color: #3844b3;
-    border-radius: 10px;
 
     @media screen and (max-width: 425px) {
-        padding: 50px 20px;
+        margin: 50px 0;
     }
 }
 
@@ -37,10 +34,37 @@ body {
     box-shadow: 15px 15px 10px 0px #223c5033;
 }
 
+// PAGINATION
+.pagination {
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    gap: 5px;
+
+    color: #fff;
+    list-style: none;
+
+    cursor: pointer;
+    border-radius: 3px;
+
+    &__page {
+        padding: 8px 15px;
+        border-radius: 10px;
+        background-color: rgb(92, 101, 233);
+
+        &_active {
+            background-color: rgb(35, 42, 141);
+        }
+    }
+}
+
 // SCROLL BAR
 * {
     scrollbar-width: thin;
-    scrollbar-color: #2b6be9 $scroll-bar-bg-light;
+    scrollbar-color: #2b6be9 var(--scroll-bar-bg-light);
 }
 
 *::-webkit-scrollbar {
@@ -48,26 +72,26 @@ body {
 }
 *::-webkit-scrollbar-track {
     border-radius: 5px;
-    background-color: $scroll-bar-bg-light;
+    background-color: var(--scroll-bar-bg-light);
 }
 
 *::-webkit-scrollbar-track:hover {
-    background-color: $scroll-bar-bg-light;
+    background-color: var(--scroll-bar-bg-light);
 }
 
 *::-webkit-scrollbar-track:active {
-    background-color: $scroll-bar-bg-light;
+    background-color: var(--scroll-bar-bg-light);
 }
 
 *::-webkit-scrollbar-thumb {
     border-radius: 5px;
-    background-color: $scroll-thumb-bg-light;
+    background-color: var(--scroll-thumb-bg-light);
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background-color: $scroll-thumb-bg-light-hover;
+    background-color: var(--scroll-thumb-bg-light-hover);
 }
 
 *::-webkit-scrollbar-thumb:active {
-    background-color: $scroll-thumb-bg-light-active;
+    background-color: var(--scroll-thumb-bg-light-active);
 }

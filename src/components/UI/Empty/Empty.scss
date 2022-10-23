@@ -1,7 +1,11 @@
-.not-found {
-    margin: 0 auto;
-    padding: 15px 10px;
+.empty-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.empty {
+    padding: 15px 10px;
     border-radius: 10px;
     background-color: #1c2469;
     color: #fff;

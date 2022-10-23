@@ -22,7 +22,7 @@ function App() {
     return (
         <AppProvider>
             <BrowserRouter>
-                <main className={"content shadow"}>
+                <main className={"content"}>
                     <Routes>
                         <Route
                             path={ROUTES_HOME_PAGE}
@@ -38,7 +38,6 @@ function App() {
                         />
                     </Routes>
                 </main>
-                <Footer />
                 <GoTopBtn />
             </BrowserRouter>
         </AppProvider>

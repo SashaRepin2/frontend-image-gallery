@@ -4,15 +4,15 @@ import { paintingsAddPaintings } from "@context/actions/paintings";
 import AppContext from "@context/index";
 import { useQuery } from "@tanstack/react-query";
 
-import rootApi from "@api/rootApi";
+import paintingsApi from "@api/paintingsApi";
 
 function usePaintings(page?: number, limits?: number, search?: string) {
     const { dispatch } = useContext(AppContext);
 
     const { data, isLoading, isError } = useQuery(
-        ["paintings list"],
+        ["paintings list", page, limits, search],
         () => {
-            return rootApi.getPaintings(page, limits, search);
+            return paintingsApi.getAll(page, limits, search);
         },
         {
             onSuccess: ({ data }) => {

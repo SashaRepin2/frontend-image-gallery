@@ -12,7 +12,9 @@ export interface ISelectProps {
     options: TOption[];
 }
 
-const Select: FC<ISelectProps> = ({ options }) => {
+const Select: FC<ISelectProps> = (props) => {
+    const { options } = props;
+
     const onChangeOptionHandler = (value: string) => {
         console.log(value);
     };

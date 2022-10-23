@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import NotFound from "@components/UI/NotFound";
+import NotFound from "@components/UI/Empty";
 
 import "./NotFound.scss";
 
