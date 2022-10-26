@@ -1,21 +1,24 @@
-import { useContext, useState } from "react";
-
-import AppContext from "@context/index";
 import classNames from "classnames";
 import ReactPaginate from "react-paginate";
 
 import Gallery from "@components/Gallery";
 import Loader from "@components/UI/Loader";
 
+import useAppDispatch from "@hooks/useAppDispatch";
+import useAppSelector from "@hooks/useAppSelector";
 import usePagination from "@hooks/usePagination";
-import usePaintings from "@hooks/usePaintings";
+
+import { PaintingsActionTypes } from "@store/actions/paintings";
 
 import "./Home.scss";
 
 const HomePage = () => {
-    const { state } = useContext(AppContext);
+    const dispatch = useAppDispatch();
+    const { paintings, isLoading, limitItems, countItems } = useAppSelector(
+        (state) => state.paintings,
+    );
+
     const { page, onChangePageHandler } = usePagination(0);
-    const { data, isLoading } = usePaintings(page + 1);
 
     return (
         <div className={"page-home shadow"}>
@@ -29,11 +32,18 @@ const HomePage = () => {
                 />
             ) : (
                 <>
-                    <Gallery paintings={state.paintings} />
+                    <button
+                        onClick={() => {
+                            dispatch({
+                                type: PaintingsActionTypes.PAINTINGS_LOAD_PAINTINGS,
+                            });
+                        }}
+                    >
+                        Get
+                    </button>
+                    <Gallery paintings={paintings} />
                     <ReactPaginate
-                        pageCount={Math.ceil(
-                            (data?.data.count || 1) / (data?.data.limit || 1),
-                        )}
+                        pageCount={Math.ceil(countItems / limitItems)}
                         forcePage={page}
                         previousLabel={"<"}
                         nextLabel={">"}

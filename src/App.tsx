@@ -5,8 +5,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "@components/UI/Footer";
 import GoTopBtn from "@components/UI/GoTopBtn";
 
-import AppProvider from "@provider/AppProivder";
-
 import {
     ROUTES_GALLERY_PAGE,
     ROUTES_HOME_PAGE,
@@ -20,27 +18,25 @@ const NotFoundPage = lazy(() => import("./pages/NotFound"));
 
 function App() {
     return (
-        <AppProvider>
-            <BrowserRouter>
-                <main className={"content"}>
-                    <Routes>
-                        <Route
-                            path={ROUTES_HOME_PAGE}
-                            element={<HomePage />}
-                        />
-                        <Route
-                            path={ROUTES_GALLERY_PAGE}
-                            element={<HomePage />}
-                        />
-                        <Route
-                            path={ROUTES_NOT_FOUND}
-                            element={<NotFoundPage />}
-                        />
-                    </Routes>
-                </main>
-                <GoTopBtn />
-            </BrowserRouter>
-        </AppProvider>
+        <BrowserRouter>
+            <main className={"content"}>
+                <Routes>
+                    <Route
+                        path={ROUTES_HOME_PAGE}
+                        element={<HomePage />}
+                    />
+                    <Route
+                        path={ROUTES_GALLERY_PAGE}
+                        element={<HomePage />}
+                    />
+                    <Route
+                        path={ROUTES_NOT_FOUND}
+                        element={<NotFoundPage />}
+                    />
+                </Routes>
+            </main>
+            <GoTopBtn />
+        </BrowserRouter>
     );
 }
 

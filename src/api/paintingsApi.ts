@@ -2,7 +2,7 @@ import IPainting from "@interfaces/IPainting";
 
 import { instanceAxios } from "./rootApi";
 
-interface IGetAllPaitingsResponse {
+export interface IGetAllPaitingsResponse {
     data: IPainting[];
     page: number;
     count: number;
@@ -10,26 +10,46 @@ interface IGetAllPaitingsResponse {
 }
 
 class paintingsApi {
-    static getAll(page?: number, limits?: number, search?: string) {
-        return instanceAxios.get<IGetAllPaitingsResponse>("/paintings", {
-            params: {
-                page,
-                limits,
-                search,
+    static async getAll(
+        page?: number,
+        limits?: number,
+        search?: string,
+    ): Promise<IGetAllPaitingsResponse> {
+        const response = await instanceAxios.get<IGetAllPaitingsResponse>(
+            "/paintings",
+            {
+                params: {
+                    page,
+                    limits,
+                    search,
+                },
             },
-        });
+        );
+
+        return response.data;
     }
 
-    static getOne(id: number) {
-        return instanceAxios.get<IPainting>(`paintings/${id}`);
+    static async getOne(id: number) {
+        const response = await instanceAxios.get<IPainting>(`paintings/${id}`);
+
+        return response.data;
     }
 
-    static create(location: IPainting) {
-        return instanceAxios.post<IPainting>("/locations", location);
+    static async create(location: IPainting) {
+        const response = await instanceAxios.post<IPainting>(
+            "/locations",
+            location,
+        );
+
+        return response.data;
     }
 
-    static delete(id: number) {
-        return instanceAxios.delete<IPainting>(`/locations/${id}`);
+    static async delete(id: number) {
+        const response = await instanceAxios.delete<IPainting>(
+            `/locations/${id}`,
+        );
+
+        return response.data;
     }
 }
 

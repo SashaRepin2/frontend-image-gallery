@@ -1,37 +1,31 @@
 import IPainting from "@interfaces/IPainting";
 
-import {
-    PAINTINGS_ADD_PAINTING,
-    PAINTINGS_ADD_PAINTINGS,
-} from "../actions/paintings";
+import { PaintingsActionTypes, TPaintingsActions } from "../actions/paintings";
 
 export interface IPaintingsState {
     paintings: IPainting[];
-    loading: boolean;
+    isLoading: boolean;
+    countItems: number;
+    limitItems: number;
 }
 
 export const initPaintingsState: IPaintingsState = {
     paintings: [],
-    loading: false,
+    isLoading: false,
+    countItems: 1,
+    limitItems: 1,
 };
 
 const paintingReducer = (
-    state: IPaintingsState,
-    action: { type: string; payload: any },
+    state: IPaintingsState = initPaintingsState,
+    action: TPaintingsActions,
 ): IPaintingsState => {
     switch (action.type) {
-        case PAINTINGS_ADD_PAINTINGS:
+        case PaintingsActionTypes.PAINTINGS_SET_PAINTINGS:
             return {
                 ...state,
                 paintings: [...action.payload],
             };
-
-        case PAINTINGS_ADD_PAINTING:
-            return {
-                ...state,
-                paintings: [...state.paintings, action.payload],
-            };
-
         default:
             return state;
     }
