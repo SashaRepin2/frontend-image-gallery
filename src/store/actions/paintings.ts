@@ -1,17 +1,34 @@
 import IPainting from "@interfaces/IPainting";
 
 export enum PaintingsActionTypes {
-    PAINTINGS_LOAD_PAINTINGS = "PAINTINGS/LOAD_PAINTINGS",
-    PAINTINGS_SET_PAINTINGS = "PAINTINGS/UPDATE_PAINTINGS",
+    REQUEST_LOADING = "PAINTINGS/REQUEST_LOADING",
+    REQUEST_SUCCESS = "PAINTINGS/REQUEST_SUCCESS",
+    REQUEST_FAILURE = "PAINTINGS/REQUEST_FAILURE",
 }
 
-export interface SetPaintingsAction {
-    payload: IPainting[];
-    type: PaintingsActionTypes.PAINTINGS_SET_PAINTINGS;
+export interface RequestLoadingAction {
+    type: PaintingsActionTypes.REQUEST_LOADING;
+    payload: {
+        page: number;
+        limits: number;
+        search: string;
+    };
 }
 
-export interface LoadPaintingsAction {
-    type: PaintingsActionTypes.PAINTINGS_LOAD_PAINTINGS;
+export interface RequestSuccessAction {
+    type: PaintingsActionTypes.REQUEST_SUCCESS;
+    payload: {
+        paintings: IPainting[];
+        countItems: number;
+    };
 }
 
-export type TPaintingsActions = SetPaintingsAction | LoadPaintingsAction;
+export interface RequestFailureAction {
+    type: PaintingsActionTypes.REQUEST_FAILURE;
+    payload: string;
+}
+
+export type TPaintingsActions =
+    | RequestSuccessAction
+    | RequestFailureAction
+    | RequestLoadingAction;

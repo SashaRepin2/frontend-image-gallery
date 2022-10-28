@@ -1,7 +1,10 @@
+import { useEffect } from "react";
+
 import classNames from "classnames";
 import ReactPaginate from "react-paginate";
 
 import Gallery from "@components/Gallery";
+import Empty from "@components/UI/Empty";
 import Loader from "@components/UI/Loader";
 
 import useAppDispatch from "@hooks/useAppDispatch";
@@ -14,11 +17,21 @@ import "./Home.scss";
 
 const HomePage = () => {
     const dispatch = useAppDispatch();
-    const { paintings, isLoading, limitItems, countItems } = useAppSelector(
-        (state) => state.paintings,
-    );
+    const { paintings, isLoading, limitItems, countItems, error } =
+        useAppSelector((state) => state.paintings);
 
     const { page, onChangePageHandler } = usePagination(0);
+
+    useEffect(() => {
+        dispatch({
+            type: PaintingsActionTypes.REQUEST_LOADING,
+            payload: {
+                page: page + 1,
+                limits: limitItems,
+                search: "",
+            },
+        });
+    }, [dispatch, page]);
 
     return (
         <div className={"page-home shadow"}>
@@ -32,16 +45,11 @@ const HomePage = () => {
                 />
             ) : (
                 <>
-                    <button
-                        onClick={() => {
-                            dispatch({
-                                type: PaintingsActionTypes.PAINTINGS_LOAD_PAINTINGS,
-                            });
-                        }}
-                    >
-                        Get
-                    </button>
-                    <Gallery paintings={paintings} />
+                    {error ? (
+                        <Empty content={error} />
+                    ) : (
+                        <Gallery paintings={paintings} />
+                    )}
                     <ReactPaginate
                         pageCount={Math.ceil(countItems / limitItems)}
                         forcePage={page}
