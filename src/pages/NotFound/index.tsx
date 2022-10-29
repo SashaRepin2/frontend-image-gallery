@@ -1,15 +1,13 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC } from "react";
+
+import NotFound from "@components/UI/Empty";
 
 import "./NotFound.scss";
 
-interface INotFoundPageProps {
-    content?: ReactNode;
-}
-
-const NotFoundPage: FC<INotFoundPageProps> = ({ content = "Not Found" }) => {
+const NotFoundPage: FC = () => {
     return (
         <div className={"not-found-page shadow"}>
-            <div className={"not-found-page__content"}>{content}</div>
+            <NotFound />
         </div>
     );
 };

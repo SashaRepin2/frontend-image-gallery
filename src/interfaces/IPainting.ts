@@ -8,8 +8,6 @@ export default interface IPainting {
     authorId: number;
     imageUrl: string;
     locationId: number;
-    createdAt: string;
-    updatedAt: string;
     author: IAuthor;
     location: ILocation;
 }

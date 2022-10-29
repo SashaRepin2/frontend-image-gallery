@@ -10,7 +10,9 @@ interface IPaintingProps {
     painting: IPainting;
 }
 
-const Painting: FC<IPaintingProps> = ({ painting }) => {
+const Painting: FC<IPaintingProps> = (props) => {
+    const { painting } = props;
+
     return (
         <div className={"painting"}>
             <div className={"painting__image"}>

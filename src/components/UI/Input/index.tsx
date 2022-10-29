@@ -10,7 +10,9 @@ type TInputStyles = {
 
 interface IInputProps {
     value: string;
-    changeValue: (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+    changeValue: (
+        event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+    ) => void;
     placeholder?: string;
     type?: string;
     className?: string;
@@ -21,18 +23,20 @@ interface IInputProps {
     styles?: TInputStyles;
 }
 
-const Input: FC<IInputProps> = ({
-    value,
-    changeValue,
-    placeholder,
-    styles,
-    ref,
-    label,
-    name,
-    id,
-    className = "input",
-    type = "text",
-}) => {
+const Input: FC<IInputProps> = (props) => {
+    const {
+        value,
+        changeValue,
+        placeholder,
+        styles,
+        ref,
+        label,
+        name,
+        id,
+        className = "input",
+        type = "text",
+    } = props;
+
     return (
         <div
             className={"input-container"}

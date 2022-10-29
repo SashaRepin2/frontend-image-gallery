@@ -1,90 +1,74 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useEffect } from "react";
 
-import { paintingsAddPaintings } from "@context/actions/paintings";
-import AppContext from "@context/index";
+import classNames from "classnames";
+import ReactPaginate from "react-paginate";
 
 import Gallery from "@components/Gallery";
-import Pagination from "@components/Pagination";
-import Input from "@components/UI/Input";
-import Select from "@components/UI/Select";
+import Empty from "@components/UI/Empty";
+import Loader from "@components/UI/Loader";
 
-import IPainting from "@interfaces/IPainting";
+import useAppDispatch from "@hooks/useAppDispatch";
+import useAppSelector from "@hooks/useAppSelector";
+import usePagination from "@hooks/usePagination";
+
+import { PaintingsActionTypes } from "@store/actions/paintings";
 
 import "./Home.scss";
 
 const HomePage = () => {
-    const { state, dispatch } = useContext(AppContext);
-    const [page, setPage] = useState<number>(1);
-    const [searchValue, setSearchValue] = useState<string>("");
+    const dispatch = useAppDispatch();
+    const { paintings, isLoading, limitItems, countItems, error } =
+        useAppSelector((state) => state.paintings);
 
-    const onChangeInputHandler = useCallback(
-        (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-            setSearchValue(event.target.value);
-        },
-        [],
-    );
-
-    const onChangePageHandler = useCallback(
-        (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, page: number) => {
-            setPage(page);
-        },
-        [setPage],
-    );
+    const { page, onChangePageHandler } = usePagination(0);
 
     useEffect(() => {
-        getPaintings();
-    }, [page]);
-
-    function getPaintings() {
-        fetch(`http://localhost:2000/api/paintings?page=${page}&search=${searchValue}`, {
-            method: "GET",
-            mode: "cors",
-        })
-            .then((response) => response.json())
-            .then((paitings) => {
-                const data = paitings.data;
-                dispatch(paintingsAddPaintings(data as IPainting[]));
-            })
-            .catch((err) => {
-                const message = (err as Error).message;
-                console.log(message);
-            });
-    }
+        dispatch({
+            type: PaintingsActionTypes.REQUEST_LOADING,
+            payload: {
+                page: page + 1,
+                limits: limitItems,
+                search: "",
+            },
+        });
+    }, [dispatch, page]);
 
     return (
-        <>
-            <div
-                style={{
-                    width: "fit-content",
-                    margin: "10px auto",
-                }}
-            >
-                <Input
-                    value={searchValue}
-                    changeValue={onChangeInputHandler}
-                    placeholder={"Девятый вал"}
-                    label={"Введите название картины"}
-                    id={"search-gallery "}
-                    name={"search"}
+        <div className={"page-home shadow"}>
+            {isLoading ? (
+                <Loader
+                    position={"absolute"}
+                    style={{
+                        top: "50%",
+                        left: "50%",
+                    }}
                 />
-                <Select
-                    options={[
-                        {
-                            name: "first",
-                            value: "2",
-                        },
-                    ]}
-                />
-            </div>
-            <Gallery paintings={state.paintings} />
-            <div className={"pagination-container"}>
-                <Pagination
-                    currPage={page}
-                    countPages={10}
-                    onChange={onChangePageHandler}
-                />
-            </div>
-        </>
+            ) : (
+                <>
+                    {error ? (
+                        <Empty content={error} />
+                    ) : (
+                        <>
+                            <Gallery paintings={paintings} />
+                            <ReactPaginate
+                                pageCount={Math.ceil(countItems / limitItems)}
+                                forcePage={page}
+                                previousLabel={"<"}
+                                nextLabel={">"}
+                                onPageChange={onChangePageHandler}
+                                containerClassName={classNames("pagination", {
+                                    pagination_disabled: isLoading,
+                                })}
+                                pageLinkClassName={"pagination__page"}
+                                previousLinkClassName={"pagination__page"}
+                                nextLinkClassName={"pagination__page"}
+                                activeLinkClassName={"pagination__page_active"}
+                            />
+                        </>
+                    )}
+                </>
+            )}
+        </div>
     );
 };
 

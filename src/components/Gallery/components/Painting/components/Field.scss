@@ -1,7 +1,6 @@
 .field {
     margin: 5px 0px;
     padding: 3px 5px;
-
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -9,11 +8,9 @@
     align-items: center;
 
     cursor: default;
-
-    border-radius: 5px;
-    background-color: #256cc9;
-
     color: #fff;
+    border-radius: 5px;
+    background-color: var(--painting-field-bg-color);
     font-size: 18px;
 
     &__title {
