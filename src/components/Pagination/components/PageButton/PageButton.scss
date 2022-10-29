@@ -13,7 +13,12 @@
         font-weight: bold;
 
         &_active {
-            background-color: #3f59ee;
+            background-color: #4150a5;
+        }
+
+        &:hover {
+            cursor: pointer;
+            background-color: #001aad;
         }
     }
 }
