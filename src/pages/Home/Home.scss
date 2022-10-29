@@ -1,7 +1,10 @@
-.pagination-container {
-    margin: 15px auto;
-
+.page-home {
+    padding: 25px 30px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+    background-color: var(--page-home-bg-color);
+    border-radius: 10px;
 }

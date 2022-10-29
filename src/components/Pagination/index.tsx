@@ -10,7 +10,10 @@ export interface IPaginataionProps {
     currPage: number;
     isShowNextAndPrev?: boolean;
     isDisabled?: boolean;
-    onChange: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, page: number) => void;
+    onChange: (
+        event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+        page: number,
+    ) => void;
 }
 
 const Pagination: FC<IPaginataionProps> = ({
@@ -24,12 +27,16 @@ const Pagination: FC<IPaginataionProps> = ({
 
     const pageNumbers = [...Array<number>(countPages).keys()];
 
-    const onClickPrevHandlder = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const onClickPrevHandlder = (
+        event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    ) => {
         if (currPage <= 1) return;
         onChange(event, currPage - 1);
     };
 
-    const onClickNextHandler = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const onClickNextHandler = (
+        event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    ) => {
         if (currPage >= countPages) return;
         onChange(event, currPage + 1);
     };
