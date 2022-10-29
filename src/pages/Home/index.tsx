@@ -48,22 +48,24 @@ const HomePage = () => {
                     {error ? (
                         <Empty content={error} />
                     ) : (
-                        <Gallery paintings={paintings} />
+                        <>
+                            <Gallery paintings={paintings} />
+                            <ReactPaginate
+                                pageCount={Math.ceil(countItems / limitItems)}
+                                forcePage={page}
+                                previousLabel={"<"}
+                                nextLabel={">"}
+                                onPageChange={onChangePageHandler}
+                                containerClassName={classNames("pagination", {
+                                    pagination_disabled: isLoading,
+                                })}
+                                pageLinkClassName={"pagination__page"}
+                                previousLinkClassName={"pagination__page"}
+                                nextLinkClassName={"pagination__page"}
+                                activeLinkClassName={"pagination__page_active"}
+                            />
+                        </>
                     )}
-                    <ReactPaginate
-                        pageCount={Math.ceil(countItems / limitItems)}
-                        forcePage={page}
-                        previousLabel={"<"}
-                        nextLabel={">"}
-                        onPageChange={onChangePageHandler}
-                        containerClassName={classNames("pagination", {
-                            pagination_disabled: isLoading,
-                        })}
-                        pageLinkClassName={"pagination__page"}
-                        previousLinkClassName={"pagination__page"}
-                        nextLinkClassName={"pagination__page"}
-                        activeLinkClassName={"pagination__page_active"}
-                    />
                 </>
             )}
         </div>
