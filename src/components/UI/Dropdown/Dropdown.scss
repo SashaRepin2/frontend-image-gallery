@@ -1,0 +1,25 @@
+.dropdown {
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    background-color: white;
+
+    &__header {
+        padding: 15px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__list-items {
+        overflow: auto;
+        max-height: 300px;
+        display: none;
+        padding: 5px;
+        border-top: 1px solid #e5e8ec;
+
+        &.open {
+            display: block;
+        }
+    }
+}
