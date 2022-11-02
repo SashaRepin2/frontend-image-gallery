@@ -5,7 +5,9 @@
         padding: 10px;
         display: flex;
         align-items: center;
+
         border-radius: 0 10px 10px 0;
+        overflow: hidden;
 
         &-dot {
             margin-right: 10px;
@@ -20,6 +22,7 @@
 
         &-label {
             font-size: 1.2rem;
+            word-break: break-all;
         }
 
         &_selected {
