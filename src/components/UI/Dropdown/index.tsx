@@ -1,62 +1,76 @@
-import React, { FC, useCallback, useMemo, useState } from "react";
+import React, { FC, useMemo, useState } from "react";
 
+import { ReactComponent as ArrowSvg } from "@assets/svg/arrow.svg";
 import classNames from "classnames";
 
-import DropdownItem from "./components/Item";
+import DropdownOption, { TDropdownOption } from "./components/Option";
+
+import useClickOutside from "@hooks/useClickOutside";
 
 import "./Dropdown.scss";
 
-export type TDropdownItem = {
-    id: number;
-    label: string;
-};
-
 interface IDropwondProps {
-    items: TDropdownItem[];
-    title: string;
+    selected: TDropdownOption | null;
+    options: TDropdownOption[];
+    placeholder: string;
+    onChange: (option: TDropdownOption) => void;
 }
 
 const Dropdown: FC<IDropwondProps> = (props) => {
-    const { title, items } = props;
+    const { selected, placeholder, options, onChange } = props;
 
+    const { ref } = useClickOutside<HTMLDivElement>(onCloseHandler);
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [selection, setSelection] = useState<TDropdownItem[]>([]);
 
-    const onClickOpenHandler = useCallback(() => {
-        setIsOpen((prev) => !prev);
-    }, []);
+    function isOptionSelected(option: TDropdownOption) {
+        return option === selected;
+    }
 
-    const onClickItemHandler = useCallback(() => {
-        console.log("item");
-    }, []);
+    function onClickOptionHandler(option: TDropdownOption) {
+        onChange(option);
+    }
 
-    const memoDropdownItems = useMemo(() => {
-        return items.map((item) => {
+    function onToggleHandler() {
+        setIsOpen(!isOpen);
+    }
+
+    function onCloseHandler() {
+        setIsOpen(false);
+    }
+
+    const memoDropdownOptions = useMemo(() => {
+        return options.map((option, index) => {
             return (
-                <DropdownItem
-                    key={item.id}
-                    item={item}
+                <DropdownOption
+                    key={index}
+                    option={option}
+                    isSelected={isOptionSelected(option)}
+                    onClick={onClickOptionHandler}
                 />
             );
         });
-    }, [items]);
+    }, [options, selected]);
 
     return (
         <div
             className={classNames("dropdown", {
                 dropdown_open: isOpen,
             })}
+            ref={ref}
+            onClick={onToggleHandler}
         >
             <div className="dropdown__header">
-                <div className="dropdown__title">{title}</div>
+                <span className="dropdown__title">
+                    {selected ? selected.label : placeholder}
+                </span>
                 <button
-                    className={"dropdown__btn"}
-                    onClick={onClickOpenHandler}
+                    className={"dropdown__toggle"}
+                    onClick={onToggleHandler}
                 >
-                    Open
+                    <ArrowSvg />
                 </button>
             </div>
-            <div className={"dropdown__list-items"}>{memoDropdownItems}</div>
+            <ul className={"dropdown__list-items"}>{memoDropdownOptions}</ul>
         </div>
     );
 };

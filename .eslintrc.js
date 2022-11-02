@@ -1,3 +1,5 @@
+const { off } = require("process");
+
 module.exports = {
     root: true,
 
@@ -45,6 +47,11 @@ module.exports = {
     ],
 
     rules: {
+        'jsx-a11y/no-noninteractive-element-interactions': "off",
+        'jsx-a11y/click-events-have-key-events': 'off',
+        'jsx-a11y/click-events-have-key-events': 'off',
+        'jsx-a11y/interactive-supports-focus': 'off',
+        'jsx-a11y/no-static-element-interactions': 'off',
         "import/no-named-as-default-member": "off",
         "function-call-argument-newline": ["error", "consistent"],
         "@typescript-eslint/no-explicit-any": "off",
