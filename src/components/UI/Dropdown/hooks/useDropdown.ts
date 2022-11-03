@@ -1,37 +1,74 @@
-import { useCallback, useState } from "react";
+// import { useCallback, useState } from "react";
+import { useState } from "react";
 
-function useDropdown(initSelectedItems: { id: number }[] = []) {
-    const [selectedItems, setSelectedItems] =
-        useState<{ id: number }[]>(initSelectedItems);
+import { TDropdownOption } from "../components/Option";
 
-    const hasSelectedItem = useCallback(
-        (id: number) => {
-            const result = selectedItems.some((item) => {
-                return item.id === id;
-            });
+// function useDropdown(initSelectedItems: { id: number }[] = []) {
+//     const [selectedItems, setSelectedItems] =
+//         useState<{ id: number }[]>(initSelectedItems);
 
-            return result;
-        },
-        [selectedItems],
-    );
+//     const hasSelectedItem = useCallback(
+//         (id: number) => {
+//             const result = selectedItems.some((item) => {
+//                 return item.id === id;
+//             });
 
-    function onClickItemHandler(item: { id: number }) {
-        if (hasSelectedItem(item.id)) {
-            const newSelectedItems = selectedItems.filter(
-                (selectedItem) => selectedItem.id !== item.id,
-            );
-            setSelectedItems(newSelectedItems);
-        } else {
-            const newArr = [...selectedItems, item];
-            setSelectedItems(newArr);
-        }
+//             return result;
+//         },
+//         [selectedItems],
+//     );
+
+//     function onClickItemHandler(item: { id: number }) {
+//         if (hasSelectedItem(item.id)) {
+//             const newSelectedItems = selectedItems.filter(
+//                 (selectedItem) => selectedItem.id !== item.id,
+//             );
+//             setSelectedItems(newSelectedItems);
+//         } else {
+//             const newArr = [...selectedItems, item];
+//             setSelectedItems(newArr);
+//         }
+//     }
+
+//     return {
+//         selectedItems,
+//         setSelectedItems,
+//         hasSelectedItem,
+//         onClickItemHandler,
+//     };
+// }
+
+// export default useDropdown;
+
+function useDropdown(
+    selected: TDropdownOption | null,
+    onChangeOption: (option: TDropdownOption) => void,
+) {
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+
+    function isOptionSelected(option: TDropdownOption) {
+        return option === selected;
+    }
+
+    function onClickOptionHandler(option: TDropdownOption) {
+        onChangeOption(option);
+    }
+
+    function onToggleHandler() {
+        setIsOpen(!isOpen);
+    }
+
+    function onCloseHandler() {
+        setIsOpen(false);
     }
 
     return {
-        selectedItems,
-        setSelectedItems,
-        hasSelectedItem,
-        onClickItemHandler,
+        isOpen,
+        setIsOpen,
+        isOptionSelected,
+        onToggleHandler,
+        onClickOptionHandler,
+        onCloseHandler,
     };
 }
 

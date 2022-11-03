@@ -87,7 +87,7 @@ const HomePage = () => {
                         selected={selectvalue}
                         placeholder={"Авторы"}
                         options={options}
-                        onChange={(option) => {
+                        onChangeOption={(option) => {
                             setSelectValue(option);
                         }}
                     />

@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import classNames from "classnames";
 
-import "./Item.scss";
+import "./Option.scss";
 
 export type TDropdownOption = {
     label: string;
@@ -25,13 +25,13 @@ const DropdownOption: FC<IDropdownOptionProps> = (props) => {
 
     return (
         <li
-            className={classNames("dropdown__item ", {
+            className={classNames("dropdown__option ", {
                 dropdown__item_selected: isSelected,
             })}
             onClick={onClickHandler}
         >
-            <span className={"dropdown__item-dot"}></span>
-            <span className={"dropdown__item-label"}>{option.label}</span>
+            <span className={"dropdown__option-dot"}></span>
+            <span className={"dropdown__option-label"}>{option.label}</span>
         </li>
     );
 };

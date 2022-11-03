@@ -1,10 +1,10 @@
 .dropdown {
     width: 250px;
 
-    color: #fff;
     background-color: #5656ff;
     border-radius: 10px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    color: #fff;
     overflow: hidden;
 
     &__header {
@@ -35,7 +35,7 @@
         }
     }
 
-    &__list-items {
+    &__list-options {
         margin: 5px 0px;
         margin-right: 3px;
         display: none;
@@ -49,12 +49,12 @@
                 border-bottom: 3px solid #1c1c64;
             }
 
-            &__list-items {
-                display: block;
-            }
-
             &__toggle {
                 transform: rotate(90deg);
+            }
+
+            &__list-options {
+                display: block;
             }
         }
     }

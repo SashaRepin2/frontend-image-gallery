@@ -1,42 +1,34 @@
-import React, { FC, useMemo, useState } from "react";
+import React, { FC, useMemo } from "react";
 
-import { ReactComponent as ArrowSvg } from "@assets/svg/arrow.svg";
 import classNames from "classnames";
 
+import DropdownHeader from "./components/Header/Header";
 import DropdownOption, { TDropdownOption } from "./components/Option";
 
+import useDropdown from "./hooks/useDropdown";
 import useClickOutside from "@hooks/useClickOutside";
 
 import "./Dropdown.scss";
 
-interface IDropwondProps {
+interface IDropdownProps {
     selected: TDropdownOption | null;
     options: TDropdownOption[];
     placeholder: string;
-    onChange: (option: TDropdownOption) => void;
+    onChangeOption: (option: TDropdownOption) => void;
 }
 
-const Dropdown: FC<IDropwondProps> = (props) => {
-    const { selected, placeholder, options, onChange } = props;
+const Dropdown: FC<IDropdownProps> = (props) => {
+    const { selected, placeholder, options, onChangeOption } = props;
+
+    const {
+        isOpen,
+        onClickOptionHandler,
+        isOptionSelected,
+        onCloseHandler,
+        onToggleHandler,
+    } = useDropdown(selected, onChangeOption);
 
     const { ref } = useClickOutside<HTMLDivElement>(onCloseHandler);
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-
-    function isOptionSelected(option: TDropdownOption) {
-        return option === selected;
-    }
-
-    function onClickOptionHandler(option: TDropdownOption) {
-        onChange(option);
-    }
-
-    function onToggleHandler() {
-        setIsOpen(!isOpen);
-    }
-
-    function onCloseHandler() {
-        setIsOpen(false);
-    }
 
     const memoDropdownOptions = useMemo(() => {
         return options.map((option, index) => {
@@ -59,18 +51,11 @@ const Dropdown: FC<IDropwondProps> = (props) => {
             ref={ref}
             onClick={onToggleHandler}
         >
-            <div className="dropdown__header">
-                <span className="dropdown__title">
-                    {selected ? selected.label : placeholder}
-                </span>
-                <button
-                    className={"dropdown__toggle"}
-                    onClick={onToggleHandler}
-                >
-                    <ArrowSvg />
-                </button>
-            </div>
-            <ul className={"dropdown__list-items"}>{memoDropdownOptions}</ul>
+            <DropdownHeader
+                placeholder={selected ? selected.label : placeholder}
+                onToggle={onToggleHandler}
+            />
+            <ul className={"dropdown__list-options"}>{memoDropdownOptions}</ul>
         </div>
     );
 };
