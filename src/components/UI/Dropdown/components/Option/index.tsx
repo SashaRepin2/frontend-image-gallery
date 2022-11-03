@@ -25,8 +25,8 @@ const DropdownOption: FC<IDropdownOptionProps> = (props) => {
 
     return (
         <li
-            className={classNames("dropdown__option ", {
-                dropdown__item_selected: isSelected,
+            className={classNames("dropdown__option", {
+                dropdown__option_selected: isSelected,
             })}
             onClick={onClickHandler}
         >

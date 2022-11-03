@@ -1,0 +1,45 @@
+.dropdown {
+    &__header {
+        padding: 10px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 50px;
+
+        cursor: pointer;
+    }
+
+    &__title {
+        font-weight: bold;
+        font-size: 1.5rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    &__toggle {
+        margin-left: 5px;
+        border: 0px;
+        outline: 0px;
+        background-color: transparent;
+        transition: all 0.2s ease-in-out;
+
+        svg {
+            height: 16px;
+            width: 16px;
+            fill: #fff;
+        }
+    }
+
+    &_open {
+        .dropdown {
+            &__header {
+                border-bottom: 3px solid #1c1c64;
+            }
+
+            &__toggle {
+                transform: rotate(90deg);
+            }
+        }
+    }
+}

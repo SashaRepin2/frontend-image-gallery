@@ -2,6 +2,8 @@ import { FC } from "react";
 
 import { ReactComponent as ArrowSvg } from "@assets/svg/arrow.svg";
 
+import "./Header.scss";
+
 interface IDropdownProps {
     placeholder: string;
     onToggle: () => void;

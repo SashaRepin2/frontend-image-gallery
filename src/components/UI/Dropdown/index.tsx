@@ -3,6 +3,7 @@ import React, { FC, useMemo } from "react";
 import classNames from "classnames";
 
 import DropdownHeader from "./components/Header/Header";
+import DropdownListOptions from "./components/ListOptions";
 import DropdownOption, { TDropdownOption } from "./components/Option";
 
 import useDropdown from "./hooks/useDropdown";
@@ -55,7 +56,7 @@ const Dropdown: FC<IDropdownProps> = (props) => {
                 placeholder={selected ? selected.label : placeholder}
                 onToggle={onToggleHandler}
             />
-            <ul className={"dropdown__list-options"}>{memoDropdownOptions}</ul>
+            <DropdownListOptions>{memoDropdownOptions}</DropdownListOptions>
         </div>
     );
 };
