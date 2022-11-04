@@ -22,7 +22,9 @@
 
         &-label {
             font-size: 1.2rem;
-            word-break: break-all;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
         }
 
         &_selected {

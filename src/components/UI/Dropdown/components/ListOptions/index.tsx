@@ -1,5 +1,7 @@
 import { FC, ReactNode } from "react";
 
+import "./ListOptions.scss";
+
 interface IDropdownListOptionsProps {
     children: ReactNode;
 }
@@ -7,7 +9,11 @@ interface IDropdownListOptionsProps {
 const DropdownListOptions: FC<IDropdownListOptionsProps> = (props) => {
     const { children } = props;
 
-    return <ul className={"dropdown__list-options"}>{children}</ul>;
+    return (
+        <div className={"dropdown__list-wrapper"}>
+            <ul className={"dropdown__list-options"}>{children}</ul>
+        </div>
+    );
 };
 
 export default DropdownListOptions;

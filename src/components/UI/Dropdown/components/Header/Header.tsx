@@ -16,7 +16,7 @@ const DropdownHeader: FC<IDropdownProps> = (props) => {
         <div className="dropdown__header">
             <span className="dropdown__title">{placeholder}</span>
             <button
-                className={"dropdown__toggle"}
+                className={"dropdown__toggler"}
                 onClick={onToggle}
             >
                 <ArrowSvg />
