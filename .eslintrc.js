@@ -1,43 +1,28 @@
 module.exports = {
-    root: true,
-    env: {
-        browser: true,
-        node: true,
+  root: true,
+  env: {
+    browser: true,
+    node: true
+  },
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaVersion: "es2016",
+    sourceType: "module",
+    ecmaFeatures: {
+      jsx: true,
+      impliedStrict: true
     },
-    parser: "@typescript-eslint/parser",
-    parserOptions: {
-        ecmaVersion: "es2016",
-        sourceType: "module",
-        ecmaFeatures: {
-            jsx: true,
-            impliedStrict: true,
-        },
-        tsconfigRootDir: "./",
-        project: ["./tsconfig.json"],
-    },
-    settings: {
-        "import/resolver": {
-            typescript: {},
-        },
-    },
-    plugins: ["react", "@typescript-eslint", "import", "prettier"],
-    extends: [
-        "eslint:recommended",
-        "plugin:eslint-comments/recommended",
-
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:react-hooks/recommended",
-        "plugin:jsx-a11y/recommended",
-
-        "plugin:import/errors",
-        "plugin:import/warnings",
-        "plugin:import/typescript",
-
-        "plugin:prettier/recommended",
-        "prettier",
-    ],
-    rules: {
+    tsconfigRootDir: "./",
+    project: ["./tsconfig.json"]
+  },
+  settings: {
+    "import/resolver": {
+      typescript: {}
+    }
+  },
+  plugins: ["react", "@typescript-eslint", "import", "prettier"],
+  extends: ["eslint:recommended", "plugin:eslint-comments/recommended", "plugin:react/recommended", "plugin:@typescript-eslint/recommended", "plugin:react-hooks/recommended", "plugin:jsx-a11y/recommended", "plugin:import/errors", "plugin:import/warnings", "plugin:import/typescript", "plugin:prettier/recommended", "prettier", "plugin:storybook/recommended"],
+     rules: {
         'jsx-a11y/no-noninteractive-element-interactions': "off",
         'jsx-a11y/click-events-have-key-events': 'off',
         'jsx-a11y/click-events-have-key-events': 'off',
@@ -73,3 +58,4 @@ module.exports = {
         "function-call-argument-newline": ["error", "consistent"],
     },
 };
+

@@ -6,6 +6,11 @@ export enum AuthorsActionTypes {
 
 export interface RequestLoadingAction {
     type: AuthorsActionTypes.REQUEST_LOADING;
+    payload: {
+        page: number;
+        search: string;
+        limits: number;
+    };
 }
 
 export interface RequestSuccessAction {
