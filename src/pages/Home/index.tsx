@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import classNames from "classnames";
 import ReactPaginate from "react-paginate";
 
 import Gallery from "@components/Gallery";
 import Empty from "@components/UI/Empty";
+import Input from "@components/UI/Input";
 import Loader from "@components/UI/Loader";
 
 import useAppDispatch from "@hooks/useAppDispatch";
@@ -17,6 +18,8 @@ import "./Home.scss";
 
 const HomePage = () => {
     const dispatch = useAppDispatch();
+    const [inputValue, setInputValue] = useState<string>("");
+
     const { paintings, isLoading, limitItems, countItems, error } =
         useAppSelector((state) => state.paintings);
 
@@ -35,6 +38,12 @@ const HomePage = () => {
 
     return (
         <div className={"page-home shadow"}>
+            <Input
+                value={inputValue}
+                changeValue={(event) => setInputValue(event.target.value)}
+                placeholder={"Название картины"}
+            />
+
             {isLoading ? (
                 <Loader
                     position={"absolute"}
