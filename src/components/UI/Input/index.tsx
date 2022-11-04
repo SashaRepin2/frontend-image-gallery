@@ -1,47 +1,62 @@
-import React, { FC, RefObject } from "react";
+import React, { FC, ReactNode, RefObject } from "react";
+
+import classNames from "classnames";
 
 import "./Input.scss";
 
 interface IInputProps {
     value: string;
+    id: string;
+    placeholder?: string;
+    type?: string;
+    name?: string;
+    label?: string;
+    ref?: RefObject<HTMLInputElement>;
+    required?: boolean;
+    error?: ReactNode;
     changeValue: (
         event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
     ) => void;
-    placeholder?: string;
-    type?: string;
-    className?: string;
-    name?: string;
-    id?: string;
-    label?: string;
-    ref?: RefObject<HTMLInputElement>;
 }
 
 const Input: FC<IInputProps> = (props) => {
     const {
         value,
-        changeValue,
         placeholder,
         ref,
         label,
         name,
         id,
-        className = "input",
+        required,
         type = "text",
+        error,
+        changeValue,
     } = props;
 
     return (
-        <div className={"input-container"}>
-            {label && <label htmlFor={id}>{label}</label>}
+        <div className={"input"}>
+            {label && (
+                <label
+                    className={"input__label"}
+                    htmlFor={id}
+                >
+                    {label}
+                </label>
+            )}
             <input
+                className={classNames("input__root", {
+                    input_error: error,
+                })}
                 value={value}
                 onChange={changeValue}
                 placeholder={placeholder}
-                className={className}
                 type={type}
                 id={id}
                 name={name}
                 ref={ref}
+                required={required}
             />
+            {error && <span className={"input__error"}>{error}</span>}
         </div>
     );
 };

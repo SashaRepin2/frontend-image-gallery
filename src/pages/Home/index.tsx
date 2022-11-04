@@ -39,9 +39,11 @@ const HomePage = () => {
     return (
         <div className={"page-home shadow"}>
             <Input
+                id={"authors"}
                 value={inputValue}
                 changeValue={(event) => setInputValue(event.target.value)}
                 placeholder={"Название картины"}
+                label={"Authors"}
             />
 
             {isLoading ? (
