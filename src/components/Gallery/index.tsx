@@ -13,7 +13,7 @@ export interface IGalleryProps {
 }
 
 const Gallery: FC<IGalleryProps> = (props) => {
-    const { paintings, emptyText } = props;
+    const { paintings, emptyText = "Картины не найдены" } = props;
 
     const memoPaintings = useMemo(
         () =>
@@ -35,10 +35,6 @@ const Gallery: FC<IGalleryProps> = (props) => {
             )}
         </div>
     );
-};
-
-Gallery.defaultProps = {
-    emptyText: "Картины не найдены",
 };
 
 export default memo(Gallery);
