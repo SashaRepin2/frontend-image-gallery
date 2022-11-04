@@ -1,15 +1,10 @@
-const { off } = require("process");
-
 module.exports = {
     root: true,
-
     env: {
         browser: true,
         node: true,
     },
-
     parser: "@typescript-eslint/parser",
-
     parserOptions: {
         ecmaVersion: "es2016",
         sourceType: "module",
@@ -20,15 +15,12 @@ module.exports = {
         tsconfigRootDir: "./",
         project: ["./tsconfig.json"],
     },
-
     settings: {
         "import/resolver": {
             typescript: {},
         },
     },
-
     plugins: ["react", "@typescript-eslint", "import", "prettier"],
-
     extends: [
         "eslint:recommended",
         "plugin:eslint-comments/recommended",
@@ -45,7 +37,6 @@ module.exports = {
         "plugin:prettier/recommended",
         "prettier",
     ],
-
     rules: {
         'jsx-a11y/no-noninteractive-element-interactions': "off",
         'jsx-a11y/click-events-have-key-events': 'off',
