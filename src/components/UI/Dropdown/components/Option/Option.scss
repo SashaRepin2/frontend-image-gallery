@@ -1,0 +1,43 @@
+.dropdown {
+    &__option {
+        margin-right: 5px;
+        margin-bottom: 3px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+
+        border-radius: 0 10px 10px 0;
+        overflow: hidden;
+
+        &-dot {
+            margin-right: 10px;
+            height: 8px;
+            width: 8px;
+
+            opacity: 0;
+            background-color: #b5b5f1;
+            border-radius: 50%;
+            transition: all 0.1s ease-in;
+        }
+
+        &-label {
+            font-size: 1.2rem;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        &_selected {
+            background-color: #3434fa;
+
+            .dropdown__item-dot {
+                opacity: 1;
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+            background-color: #3434fc;
+        }
+    }
+}
