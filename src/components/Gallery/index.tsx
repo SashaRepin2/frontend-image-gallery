@@ -27,13 +27,13 @@ const Gallery: FC<IGalleryProps> = (props) => {
     );
 
     return (
-        <div className={"gallery-container"}>
+        <>
             {memoPaintings.length ? (
                 <div className={"gallery"}>{memoPaintings}</div>
             ) : (
                 <NotFound content={emptyText} />
             )}
-        </div>
+        </>
     );
 };
 

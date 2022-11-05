@@ -1,12 +1,6 @@
 .gallery {
-    min-height: 250px;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     gap: 20px;
-}
-
-.gallery-container {
-    margin: 15px auto;
-    width: 1120px;
 }

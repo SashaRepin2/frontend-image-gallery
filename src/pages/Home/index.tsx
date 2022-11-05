@@ -73,6 +73,14 @@ const HomePage = () => {
 
     return (
         <div className={"page-home shadow"}>
+            <Dropdown
+                selected={selectvalue}
+                placeholder={"Авторы"}
+                options={options}
+                onChangeOption={(option) => {
+                    setSelectValue(option);
+                }}
+            />
             {isLoading ? (
                 <Loader
                     position={"absolute"}
@@ -82,18 +90,15 @@ const HomePage = () => {
                     }}
                 />
             ) : (
-                <>
-                    <Dropdown
-                        selected={selectvalue}
-                        placeholder={"Авторы"}
-                        options={options}
-                        onChangeOption={(option) => {
-                            setSelectValue(option);
-                        }}
-                    />
-
+                <div className={"page-home__gallery-container"}>
                     {error ? (
-                        <Empty content={error} />
+                        <Empty
+                            content={error}
+                            styles={{
+                                justifySelf: "center",
+                                alignSelf: "flex-start",
+                            }}
+                        />
                     ) : (
                         <>
                             <Gallery paintings={paintings} />
@@ -113,7 +118,7 @@ const HomePage = () => {
                             />
                         </>
                     )}
-                </>
+                </div>
             )}
         </div>
     );
