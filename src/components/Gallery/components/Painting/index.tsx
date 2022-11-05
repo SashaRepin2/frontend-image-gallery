@@ -21,21 +21,21 @@ const Painting: FC<IPaintingProps> = (props) => {
                     alt={painting.name}
                 />
             </div>
-            <div className={"painting__info"}>
+            <div className={"painting__full-info"}>
                 <PaintingField
-                    title={"Название:"}
+                    title={"Название"}
                     value={painting.name}
                 />
                 <PaintingField
-                    title={"Год создания:"}
+                    title={"Год создания"}
                     value={painting.created}
                 />
                 <PaintingField
-                    title={"Автор:"}
+                    title={"Автор"}
                     value={painting.author.name}
                 />
                 <PaintingField
-                    title={"Местоположение:"}
+                    title={"Местоположение"}
                     value={painting.location.location}
                 />
             </div>
