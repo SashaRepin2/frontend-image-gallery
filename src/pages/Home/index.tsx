@@ -7,6 +7,7 @@ import Gallery from "@components/Gallery";
 import Dropdown from "@components/UI/Dropdown";
 import { TDropdownOption } from "@components/UI/Dropdown/components/Option";
 import Empty from "@components/UI/Empty";
+import Input from "@components/UI/Input";
 import Loader from "@components/UI/Loader";
 
 import useAppDispatch from "@hooks/useAppDispatch";
@@ -51,6 +52,8 @@ const options = [
 
 const HomePage = () => {
     const dispatch = useAppDispatch();
+    const [inputValue, setInputValue] = useState<string>("");
+
     const { paintings, isLoading, limitItems, countItems, error } =
         useAppSelector((state) => state.paintings);
 
@@ -73,6 +76,14 @@ const HomePage = () => {
 
     return (
         <div className={"page-home shadow"}>
+
+            <Input
+                id={"authors"}
+                value={inputValue}
+                placeholder={"Название картины"}
+                changeValue={(event) => setInputValue(event.target.value)}
+            />
+            
             <Dropdown
                 selected={selectvalue}
                 placeholder={"Авторы"}
@@ -81,6 +92,7 @@ const HomePage = () => {
                     setSelectValue(option);
                 }}
             />
+
             {isLoading ? (
                 <Loader
                     position={"absolute"}
