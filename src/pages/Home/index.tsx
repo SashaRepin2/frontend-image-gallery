@@ -41,9 +41,8 @@ const HomePage = () => {
             <Input
                 id={"authors"}
                 value={inputValue}
-                changeValue={(event) => setInputValue(event.target.value)}
                 placeholder={"Название картины"}
-                label={"Authors"}
+                changeValue={(event) => setInputValue(event.target.value)}
             />
 
             {isLoading ? (

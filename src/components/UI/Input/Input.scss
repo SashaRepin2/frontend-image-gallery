@@ -1,13 +1,11 @@
 .input {
     display: flex;
     flex-direction: column;
-
     height: 65px;
     min-width: 265px;
 
     &__root {
         padding: 10px;
-
         border: none;
         border-radius: 10px;
         color: #000;
@@ -23,12 +21,18 @@
         }
     }
 
+    &__label {
+        margin-bottom: 10px;
+        color: #fff;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
     &__error {
         padding: 5px;
         display: flex;
         flex-direction: column;
         gap: 5px;
-
         border-radius: 10px;
         background-color: #7272b6;
     }
@@ -36,7 +40,7 @@
     &_error {
         .input {
             &__root {
-                outline: 2px solid #e20000;
+                outline: 2px solid red;
             }
         }
     }
