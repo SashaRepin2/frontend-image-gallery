@@ -1,20 +1,40 @@
 import { put, takeEvery } from "redux-saga/effects";
 
-import { LocationsActionTypes } from "@store/actions/locations";
+import {
+    LocationsActionTypes,
+    RequestLoadingAction,
+} from "@store/actions/locations";
 
 import locatinsApi from "@api/locationsApi";
 
 import ILocation from "@interfaces/ILocation";
 
-export function* workerFetchPaintings() {
-    const data: ILocation[] = yield locatinsApi.getAll();
+export function* workerRequestPaintings(action: RequestLoadingAction) {
+    try {
+        const { page, limits, search } = action.payload;
 
-    yield put({
-        type: LocationsActionTypes.REQUEST_SUCCESS,
-        payload: data,
-    });
+        const locations: ILocation[] = yield locatinsApi.getAll();
+
+        yield put({
+            type: LocationsActionTypes.REQUEST_SUCCESS,
+            payload: {
+                locations: locations,
+            },
+        });
+    } catch (e) {
+        const { message } = e as Error;
+        console.log(message);
+
+        yield put({
+            type: LocationsActionTypes.REQUEST_FAILURE,
+            payload: "Произошла ошибка!",
+        });
+    }
 }
 
 export function* watchLoadDataSaga() {
-    yield takeEvery(LocationsActionTypes.REQUEST_LOADING, workerFetchPaintings);
+    yield takeEvery(
+        LocationsActionTypes.REQUEST_LOADING,
+        workerRequestPaintings,
+    );
 }

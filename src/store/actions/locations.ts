@@ -3,13 +3,16 @@ import ILocation from "@interfaces/ILocation";
 export enum LocationsActionTypes {
     REQUEST_LOADING = "LOCATIONS/REQUEST_LOADING",
     REQUEST_SUCCESS = "LOCATIONS/REQUEST_SUCCESS",
-    REQUEST_FAIL = "LOCATIONS/REQUEST_FAIL",
-    SET_PAINTINGS = "LOCATIONS/SET_LOCATIONS",
-    LOCATIONS_UPDATE = "LOCATIONS/UPDATE",
+    REQUEST_FAILURE = "LOCATIONS/REQUEST_FAILURE",
 }
 
 export interface RequestLoadingAction {
     type: LocationsActionTypes.REQUEST_LOADING;
+    payload: {
+        page: number;
+        limits: number;
+        search: string;
+    };
 }
 
 export interface RequestSuccessAction {
@@ -21,22 +24,12 @@ export interface RequestSuccessAction {
     };
 }
 
-export interface RequestFailAction {
-    type: LocationsActionTypes.REQUEST_FAIL;
-}
-
-export interface SetLocationsAction {
-    payload: ILocation[];
-    type: LocationsActionTypes.SET_PAINTINGS;
-}
-
-export interface UpdateLocationsAction {
-    type: LocationsActionTypes.LOCATIONS_UPDATE;
+export interface RequestFailureAction {
+    type: LocationsActionTypes.REQUEST_FAILURE;
+    payload: string;
 }
 
 export type LocationsActions =
     | RequestSuccessAction
-    | RequestFailAction
-    | RequestLoadingAction
-    | SetLocationsAction
-    | UpdateLocationsAction;
+    | RequestFailureAction
+    | RequestLoadingAction;
