@@ -5,12 +5,12 @@
     min-width: 265px;
 
     &__root {
-        padding: 10px;
         border: none;
         border-radius: 10px;
         color: #000;
         font-size: 1.2rem;
         outline: none;
+        padding: 10px;
 
         &::placeholder {
             color: #7f7f80;
@@ -22,19 +22,10 @@
     }
 
     &__label {
-        margin-bottom: 10px;
         color: #fff;
         font-size: 1.2rem;
         font-weight: bold;
-    }
-
-    &__error {
-        padding: 5px;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        border-radius: 10px;
-        background-color: #7272b6;
+        margin-bottom: 10px;
     }
 
     &_error {

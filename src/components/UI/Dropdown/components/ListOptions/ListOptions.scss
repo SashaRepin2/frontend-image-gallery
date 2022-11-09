@@ -1,24 +1,24 @@
 .dropdown {
     &__list-wrapper {
-        position: absolute;
+        background-color: $dropdown-list-bg-color;
         display: none;
+        position: absolute;
         width: 250px;
-
-        background-color: #4242d1;
+        z-index: 10;
     }
 
     &__list-options {
+        height: 150px;
         margin: 5px 0;
         margin-right: 5px;
-        height: 150px;
         overflow-x: hidden;
     }
 
     &_open {
         .dropdown {
             &__list-wrapper {
-                display: block;
                 border-radius: 0 0 10px 10px;
+                display: block;
             }
         }
     }

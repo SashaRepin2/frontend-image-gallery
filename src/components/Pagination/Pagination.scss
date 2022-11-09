@@ -1,9 +1,8 @@
 .pagination {
-    padding: 5px 10px;
+    align-items: center;
+    background-color: $pagination-bg-color);
+    border-radius: 10px;
     display: inline-flex;
     justify-content: center;
-    align-items: center;
-
-    border-radius: 10px;
-    background-color: var(--pagination-bg-color);
+    padding: 5px 10px;
 }

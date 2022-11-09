@@ -1,10 +1,9 @@
 .not-found-page {
+    align-items: center;
+    background-color: $page-not-found-bg-color;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
-    align-items: center;
     min-height: 250px;
     width: 100%;
-
-    background-color: var(--page-not-found-bg-color);
-    border-radius: 10px;
 }
