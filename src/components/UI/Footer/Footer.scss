@@ -1,13 +1,12 @@
 .footer {
-    padding: 50px 70px;
+    align-items: center;
+    background-color: $footer-bg-color);
+    border-radius: 10px 10px 0px 0px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
     gap: 15px;
+    justify-content: center;
+    padding: 50px 70px;
     width: 100%;
-
-    background-color: var(--footer-bg-color);
-    border-radius: 10px 10px 0px 0px;
 }

@@ -1,24 +1,22 @@
 .pagination {
     &__button {
-        margin: 3px 5px;
-        padding: 10px 15px;
-        min-width: 32px;
-
+        background-color: #6174df;
         border: none;
         border-radius: 10px;
-        background-color: #6174df;
-
         color: #fff;
         font-size: 18px;
         font-weight: bold;
+        margin: 3px 5px;
+        min-width: 32px;
+        padding: 10px 15px;
 
         &_active {
             background-color: #4150a5;
         }
 
         &:hover {
-            cursor: pointer;
             background-color: #001aad;
+            cursor: pointer;
         }
     }
 }

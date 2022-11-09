@@ -1,18 +1,18 @@
 .go-top {
-    padding: 10px;
-    position: fixed;
-    bottom: 50px;
-    left: 50px;
-
+    background-color: $go-top-btn-bg-color;
     border: none;
-    background-color: var(--go-top-btn-bg-color);
     border-radius: 10px;
+    bottom: 50px;
     color: #fff;
     font-size: 18px;
     font-weight: bold;
+    left: 50px;
+    padding: 10px;
+    position: fixed;
+    z-index: 100;
 
     &:hover {
-        background-color: var(--go-top-btn-bg-color-hover);
+        background-color: $go-top-btn-bg-color-hover;
     }
 
     &_hidden {

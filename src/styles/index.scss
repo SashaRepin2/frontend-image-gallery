@@ -1,29 +1,29 @@
 @import "./variables/theme.scss";
 
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
-    background-color: var(--body-bg-color);
+    background-color: $body-bg-color;
 }
 
 #root {
-    display: grid;
-    grid-template-rows: 1fr auto;
-    min-height: 100vh;
+    background-image: url("../assets/images/bg.svg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url("../assets/images/bg.svg");
+    display: grid;
+    grid-template-rows: 1fr auto;
+    min-height: 100vh;
 }
 
 .content {
     margin: 100px auto;
-    width: 100%;
     max-width: 1200px;
+    width: 100%;
 
     @media screen and (max-width: 425px) {
         margin: 50px 0;
@@ -36,75 +36,73 @@ body {
 
 // PAGINATION
 .pagination {
-    margin: 15px 0;
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
     align-items: center;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
     font-size: 1.2rem;
     font-weight: bold;
     gap: 5px;
-
-    color: #fff;
+    justify-content: center;
     list-style: none;
-
-    cursor: pointer;
-    border-radius: 3px;
+    margin: 15px 0;
+    margin-top: 25px;
 
     &__page {
-        padding: 8px 15px;
+        background-color: $pagination-page-bg-color;
         border-radius: 10px;
-        background-color: var(--pagination-page-bg-color);
+        padding: 8px 15px;
 
         &_active {
-            background-color: var(--pagination-page-bg-color-ative);
+            background-color: $pagination-page-bg-color-ative;
         }
 
         &_disabled {
+            background-color: $pagination-page-bg-color-disabled;
             pointer-events: none;
-            background-color: var(--pagination-page-bg-color-disabled);
         }
     }
 
     &_disabled {
         .pagination__page {
+            background-color: $pagination-page-bg-color-disabled;
             pointer-events: none;
-            background-color: var(--pagination-page-bg-color-disabled);
         }
     }
 }
 
 // SCROLL BAR
 * {
+    scrollbar-color: $scroll-bar-bg-light $scroll-thumb-bg-light;
     scrollbar-width: thin;
-    scrollbar-color: var(--scroll-bar-bg-light) var(--scroll-thumb-bg-light);
 }
 
 *::-webkit-scrollbar {
     width: 15px;
 }
 *::-webkit-scrollbar-track {
+    background-color: $scroll-bar-bg-light;
     border-radius: 5px;
-    background-color: var(--scroll-bar-bg-light);
 }
 
 *::-webkit-scrollbar-track:hover {
-    background-color: var(--scroll-bar-bg-light);
+    background-color: $scroll-bar-bg-light;
 }
 
 *::-webkit-scrollbar-track:active {
-    background-color: var(--scroll-bar-bg-light);
+    background-color: $scroll-bar-bg-light;
 }
 
 *::-webkit-scrollbar-thumb {
+    background-color: $scroll-thumb-bg-light;
     border-radius: 5px;
-    background-color: var(--scroll-thumb-bg-light);
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background-color: var(--scroll-thumb-bg-light-hover);
+    background-color: $scroll-thumb-bg-light-hover;
 }
 
 *::-webkit-scrollbar-thumb:active {
-    background-color: var(--scroll-thumb-bg-light-active);
+    background-color: $scroll-thumb-bg-light-active;
 }

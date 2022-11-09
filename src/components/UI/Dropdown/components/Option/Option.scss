@@ -1,34 +1,33 @@
 .dropdown {
     &__option {
-        margin-right: 5px;
-        margin-bottom: 3px;
-        padding: 10px;
-        display: flex;
         align-items: center;
-
         border-radius: 0 10px 10px 0;
+        display: flex;
+        margin-bottom: 3px;
+        margin-right: 5px;
         overflow: hidden;
+        padding: 10px;
 
         &-dot {
-            margin-right: 10px;
+            background-color: $dropdown-dot-color;
+            border-radius: 50%;
             height: 8px;
-            width: 8px;
+            margin-right: 10px;
 
             opacity: 0;
-            background-color: #b5b5f1;
-            border-radius: 50%;
             transition: all 0.1s ease-in;
+            width: 8px;
         }
 
         &-label {
             font-size: 1.2rem;
-            text-overflow: ellipsis;
             overflow: hidden;
+            text-overflow: ellipsis;
             white-space: nowrap;
         }
 
         &_selected {
-            background-color: #3434fa;
+            background-color: $dropdown-option-bg-color-selected;
 
             .dropdown__item-dot {
                 opacity: 1;
@@ -36,8 +35,8 @@
         }
 
         &:hover {
+            background-color: $dropdown-option-bg-color-hover;
             cursor: pointer;
-            background-color: #3434fc;
         }
     }
 }

@@ -1,19 +1,19 @@
 .painting {
-    position: relative;
+    border-radius: 8px 8px;
+    color: #fff;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
-    width: 360px;
-    height: 275px;
-    color: #fff;
     font-size: 18px;
     font-weight: bold;
-    cursor: pointer;
+    height: 275px;
     overflow: hidden;
-    border-radius: 8px 8px;
+    position: relative;
+    width: 360px;
 
     &__image {
-        width: 360px;
         height: 275px;
+        width: 360px;
 
         img {
             height: 100%;
@@ -22,17 +22,16 @@
     }
 
     &__full-info {
-        position: absolute;
-        height: 100%;
-        width: 100%;
+        align-items: center;
+        background-color: $painting-full-info-bg-color;
         display: flex;
         flex-direction: column;
+        height: 100%;
         justify-content: center;
-        align-items: center;
-
-        background-color: rgba(113, 110, 255, 0.8);
         opacity: 0;
+        position: absolute;
         transition: opacity 1s ease-in-out;
+        width: 100%;
         z-index: 1;
     }
 
