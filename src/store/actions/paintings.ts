@@ -1,3 +1,5 @@
+import { TPaintingsFilters } from "@store/reducers/paintings";
+
 import IPainting from "@interfaces/IPainting";
 
 export enum PaintingsActionTypes {
@@ -11,7 +13,7 @@ export interface RequestLoadingAction {
     payload: {
         page: number;
         limits: number;
-        search: string;
+        filters: TPaintingsFilters;
     };
 }
 

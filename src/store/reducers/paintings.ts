@@ -2,10 +2,18 @@ import IPainting from "@interfaces/IPainting";
 
 import { PaintingsActionTypes, TPaintingsActions } from "../actions/paintings";
 
+export type TPaintingsFilters = {
+    byPaintingName: string;
+    byAuthorName: string;
+    byLocation: string;
+    byStartYear: string;
+    byEndYear: string;
+};
+
 export interface IPaintingsState {
     paintings: IPainting[];
     isLoading: boolean;
-    search: string;
+    filters: TPaintingsFilters;
     countItems: number;
     limitItems: number;
     error: string | null;
@@ -16,7 +24,13 @@ export const initPaintingsState: IPaintingsState = {
     isLoading: true,
     countItems: 1,
     limitItems: 10,
-    search: "",
+    filters: {
+        byPaintingName: "",
+        byAuthorName: "",
+        byLocation: "",
+        byStartYear: "",
+        byEndYear: "",
+    },
     error: null,
 };
 
@@ -26,12 +40,12 @@ const paintingReducer = (
 ): IPaintingsState => {
     switch (action.type) {
         case PaintingsActionTypes.REQUEST_LOADING: {
-            const { limits, search } = action.payload;
+            const { limits, filters } = action.payload;
 
             return {
                 ...state,
                 limitItems: limits,
-                search: search,
+                filters: filters,
                 isLoading: true,
             };
         }

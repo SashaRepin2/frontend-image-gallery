@@ -12,52 +12,22 @@ import Loader from "@components/UI/Loader";
 
 import useAppDispatch from "@hooks/useAppDispatch";
 import useAppSelector from "@hooks/useAppSelector";
+import usePaintingFilter from "@hooks/useAuthorFilter";
 import usePagination from "@hooks/usePagination";
 
 import { PaintingsActionTypes } from "@store/actions/paintings";
 
 import "./Home.scss";
 
-const options = [
-    {
-        value: "1",
-        label: "1",
-    },
-    {
-        value: "2",
-        label: "2",
-    },
-    {
-        value: "3",
-        label: "3",
-    },
-    {
-        value: "4",
-        label: "4",
-    },
-    {
-        value: "5",
-        label: "5",
-    },
-    {
-        value: "6",
-        label: "6",
-    },
-
-    {
-        value: "7",
-        label: "1111111 111 s11111 1111 1111 1111111 111111 1111111 111111111111 11111111111111 111111 1111111 111117",
-    },
-];
-
 const HomePage = () => {
     const dispatch = useAppDispatch();
-    const [inputValue, setInputValue] = useState<string>("");
+    const { debouncePaintingFilter, paintingFilter, setPaintingFilter } =
+        usePaintingFilter();
 
     const { paintings, isLoading, limitItems, countItems, error } =
         useAppSelector((state) => state.paintings);
 
-    const { page, onChangePageHandler } = usePagination(0);
+    const { page, setPage, onChangePageHandler } = usePagination(0);
 
     const [selectvalue, setSelectValue] = useState<TDropdownOption | null>(
         null,
@@ -69,24 +39,28 @@ const HomePage = () => {
             payload: {
                 page: page + 1,
                 limits: limitItems,
-                search: "",
+                filters: {
+                    byPaintingName: debouncePaintingFilter,
+                },
             },
         });
-    }, [dispatch, page]);
+
+        setPage(0);
+    }, [dispatch, page, debouncePaintingFilter]);
 
     return (
         <div className={"page-home shadow"}>
             <Input
                 id={"authors"}
-                value={inputValue}
+                value={paintingFilter}
                 placeholder={"Название картины"}
-                changeValue={(event) => setInputValue(event.target.value)}
+                changeValue={(event) => setPaintingFilter(event.target.value)}
             />
 
             <Dropdown
                 selected={selectvalue}
                 placeholder={"Авторы"}
-                options={options}
+                options={[]}
                 onChangeOption={(option) => {
                     setSelectValue(option);
                 }}
@@ -113,20 +87,29 @@ const HomePage = () => {
                     ) : (
                         <>
                             <Gallery paintings={paintings} />
-                            <ReactPaginate
-                                pageCount={Math.ceil(countItems / limitItems)}
-                                forcePage={page}
-                                previousLabel={"<"}
-                                nextLabel={">"}
-                                onPageChange={onChangePageHandler}
-                                containerClassName={classNames("pagination", {
-                                    pagination_disabled: isLoading,
-                                })}
-                                pageLinkClassName={"pagination__page"}
-                                previousLinkClassName={"pagination__page"}
-                                nextLinkClassName={"pagination__page"}
-                                activeLinkClassName={"pagination__page_active"}
-                            />
+                            {paintings.length > 0 && (
+                                <ReactPaginate
+                                    pageCount={Math.ceil(
+                                        countItems / limitItems,
+                                    )}
+                                    forcePage={page}
+                                    previousLabel={"<"}
+                                    nextLabel={">"}
+                                    onPageChange={onChangePageHandler}
+                                    containerClassName={classNames(
+                                        "pagination",
+                                        {
+                                            pagination_disabled: isLoading,
+                                        },
+                                    )}
+                                    pageLinkClassName={"pagination__page"}
+                                    previousLinkClassName={"pagination__page"}
+                                    nextLinkClassName={"pagination__page"}
+                                    activeLinkClassName={
+                                        "pagination__page_active"
+                                    }
+                                />
+                            )}
                         </>
                     )}
                 </div>
