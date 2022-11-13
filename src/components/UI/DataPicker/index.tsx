@@ -22,18 +22,14 @@ interface IDataPickerProps {
 const DataPicker: FC<IDataPickerProps> = (props) => {
     const { range, onChangeRange, placeholders } = props;
 
-    function onChangeMinDateHandler(
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) {
+    function onChangeMinDateHandler(e: React.ChangeEvent<HTMLInputElement>) {
         const inputValue = Number(e.target.value);
         const newValue = getRangeLimitValue(inputValue, range[1]);
 
         onChangeRange([newValue, range[1]]);
     }
 
-    function onChangeMaxDateHandler(
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) {
+    function onChangeMaxDateHandler(e: React.ChangeEvent<HTMLInputElement>) {
         const inputValue = Number(e.target.value);
         const newValue = getRangeLimitValue(range[0], inputValue, true);
 
@@ -55,16 +51,16 @@ const DataPicker: FC<IDataPickerProps> = (props) => {
     return (
         <div className={"datapicker"}>
             <Input
-                value={range[0].toString()}
-                changeValue={onChangeMinDateHandler}
+                value={range[0]}
+                onChange={onChangeMinDateHandler}
                 id={"min-painting-year"}
                 placeholder={placeholders?.minPlaceholder}
                 type={"number"}
             />
             <DataPickerDivider />
             <Input
-                value={range[1].toString()}
-                changeValue={onChangeMaxDateHandler}
+                value={range[1]}
+                onChange={onChangeMaxDateHandler}
                 id={"max-painting-year"}
                 placeholder={placeholders?.maxPlaceholder}
                 type={"number"}
