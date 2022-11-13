@@ -4,7 +4,8 @@ import classNames from "classnames";
 import ReactPaginate from "react-paginate";
 
 import Gallery from "@components/Gallery";
-import DataPicker, { TDateRange } from "@components/UI/DataPicker";
+import DataPicker from "@components/UI/DataPicker";
+import TDateRange from "@components/UI/DataPicker/interfaces/Range";
 import Dropdown from "@components/UI/Dropdown";
 import { TDropdownOption } from "@components/UI/Dropdown/components/Option";
 import Empty from "@components/UI/Empty";
