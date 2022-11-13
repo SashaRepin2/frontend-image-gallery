@@ -1,4 +1,9 @@
-import React, { CSSProperties, FC, RefObject } from "react";
+import React, {
+    CSSProperties,
+    FC,
+    InputHTMLAttributes,
+    RefObject,
+} from "react";
 
 import classNames from "classnames";
 
@@ -10,35 +15,34 @@ type TInputStyles = {
     input?: CSSProperties;
 };
 
-interface IInputProps {
-    value: string;
-    id: string;
-    placeholder?: string;
-    type?: string;
-    name?: string;
-    label?: string;
+type TCommonInputLabelProps = InputHTMLAttributes<HTMLInputElement> & {
     ref?: RefObject<HTMLInputElement>;
-    required?: boolean;
     isError?: boolean;
     styles?: TInputStyles;
-    changeValue: (
-        event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
-    ) => void;
-}
+};
 
-const Input: FC<IInputProps> = (props) => {
+type TInputWithoutLabelProps = TCommonInputLabelProps & {
+    name?: string;
+    label?: never;
+};
+
+type TInputWithLabelProps = TCommonInputLabelProps & {
+    label: string;
+    name: string;
+};
+
+type TInputProps = TInputWithoutLabelProps | TInputWithLabelProps;
+
+const Input: FC<TInputProps> = (props) => {
     const {
-        value,
-        placeholder,
         ref,
         label,
         name,
-        id,
-        required,
-        type = "text",
         isError = false,
         styles,
-        changeValue,
+        className,
+        id,
+        ...inputAttrs
     } = props;
 
     return (
@@ -51,23 +55,19 @@ const Input: FC<IInputProps> = (props) => {
             {label && (
                 <label
                     className={"input__label"}
-                    htmlFor={id}
+                    htmlFor={name}
                     style={styles?.inputLable}
                 >
                     {label}
                 </label>
             )}
             <input
-                className={"input__root"}
-                value={value}
-                onChange={changeValue}
-                placeholder={placeholder}
-                type={type}
+                className={classNames("input__root", className)}
                 id={id}
                 name={name}
                 ref={ref}
-                required={required}
                 style={styles?.inputRoot}
+                {...inputAttrs}
             />
         </div>
     );

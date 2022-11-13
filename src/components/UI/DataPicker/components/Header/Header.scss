@@ -1,0 +1,44 @@
+.datapicker {
+    &__header {
+        align-items: center;
+        display: flex;
+        height: 50px;
+        justify-content: space-between;
+        padding: 10px 15px;
+
+        &,
+        & * {
+            cursor: pointer;
+        }
+    }
+
+    &__title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    &__toggler {
+        background-color: transparent;
+        border: 0px;
+        margin-left: 5px;
+        outline: 0px;
+        transition: all 0.2s ease-in-out;
+
+        svg {
+            fill: #fff;
+            height: 16px;
+            width: 16px;
+        }
+    }
+
+    &_open {
+        .datapicker {
+            &__toggler {
+                transform: rotate(90deg);
+            }
+        }
+    }
+}
