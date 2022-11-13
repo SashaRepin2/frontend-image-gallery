@@ -4,6 +4,8 @@ import classNames from "classnames";
 import ReactPaginate from "react-paginate";
 
 import Gallery from "@components/Gallery";
+import DataPicker from "@components/UI/DataPicker";
+import TDateRange from "@components/UI/DataPicker/interfaces/Range";
 import Dropdown from "@components/UI/Dropdown";
 import { TDropdownOption } from "@components/UI/Dropdown/components/Option";
 import Empty from "@components/UI/Empty";
@@ -53,6 +55,10 @@ const options = [
 const HomePage = () => {
     const dispatch = useAppDispatch();
     const [inputValue, setInputValue] = useState<string>("");
+    const [dataPickerValue, setDataPickerValue] = useState<TDateRange>([
+        1000,
+        new Date().getFullYear(),
+    ]);
 
     const { paintings, isLoading, limitItems, countItems, error } =
         useAppSelector((state) => state.paintings);
@@ -94,6 +100,11 @@ const HomePage = () => {
                 onChangeOption={(option) => {
                     setSelectValue(option);
                 }}
+            />
+
+            <DataPicker
+                range={dataPickerValue}
+                onChangeRange={(value) => setDataPickerValue(value)}
             />
 
             {isLoading ? (
