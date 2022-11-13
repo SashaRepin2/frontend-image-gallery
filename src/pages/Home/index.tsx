@@ -77,10 +77,14 @@ const HomePage = () => {
     return (
         <div className={"page-home shadow"}>
             <Input
-                id={"authors"}
                 value={inputValue}
                 placeholder={"Название картины"}
-                changeValue={(event) => setInputValue(event.target.value)}
+                onChange={(event) => setInputValue(event.target.value)}
+                styles={{
+                    input: {
+                        marginBottom: "10px",
+                    },
+                }}
             />
 
             <Dropdown
