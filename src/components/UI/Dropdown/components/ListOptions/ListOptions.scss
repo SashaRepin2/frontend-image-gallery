@@ -1,12 +1,14 @@
 .dropdown {
     &__list-wrapper {
-        background-color: #4242d1;
+        background-color: $dropdown-list-bg-color;
         display: none;
         position: absolute;
         width: 250px;
+        z-index: 10;
     }
 
     &__list-options {
+        height: 150px;
         margin: 5px 0;
         margin-right: 5px;
         overflow-x: hidden;

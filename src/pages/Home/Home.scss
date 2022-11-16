@@ -1,10 +1,16 @@
 .page-home {
-    padding: 25px 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-
-    background-color: var(--page-home-bg-color);
+    background-color: $page-home-bg-color;
     border-radius: 10px;
+    height: 100%;
+    min-height: 250px;
+    padding: 15px 30px;
+
+    &__gallery-container {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 15px auto;
+        width: 1120px;
+    }
 }

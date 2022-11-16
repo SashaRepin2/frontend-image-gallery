@@ -1,65 +1,73 @@
-import React, { CSSProperties, FC, RefObject } from "react";
+import React, {
+    CSSProperties,
+    FC,
+    InputHTMLAttributes,
+    RefObject,
+} from "react";
+
+import classNames from "classnames";
 
 import "./Input.scss";
 
 type TInputStyles = {
-    container?: CSSProperties;
+    inputRoot?: CSSProperties;
+    inputLable?: CSSProperties;
     input?: CSSProperties;
-    label?: CSSProperties;
 };
 
-interface IInputProps {
-    value: string;
-    changeValue: (
-        event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
-    ) => void;
-    placeholder?: string;
-    type?: string;
-    className?: string;
-    name?: string;
-    id?: string;
-    label?: string;
+type TCommonInputLabelProps = InputHTMLAttributes<HTMLInputElement> & {
     ref?: RefObject<HTMLInputElement>;
+    isError?: boolean;
     styles?: TInputStyles;
-}
+};
 
-const Input: FC<IInputProps> = (props) => {
+type TInputWithoutLabelProps = TCommonInputLabelProps & {
+    name?: string;
+    label?: never;
+};
+
+type TInputWithLabelProps = TCommonInputLabelProps & {
+    label: string;
+    name: string;
+};
+
+type TInputProps = TInputWithoutLabelProps | TInputWithLabelProps;
+
+const Input: FC<TInputProps> = (props) => {
     const {
-        value,
-        changeValue,
-        placeholder,
-        styles,
         ref,
         label,
         name,
+        isError = false,
+        styles,
+        className,
         id,
-        className = "input",
-        type = "text",
+        ...inputAttrs
     } = props;
 
     return (
         <div
-            className={"input-container"}
-            style={styles?.container}
+            className={classNames("input", {
+                input_error: isError,
+            })}
+            style={styles?.input}
         >
             {label && (
                 <label
-                    htmlFor={id}
-                    style={styles?.label}
+                    className={"input__label"}
+                    htmlFor={name}
+                    style={styles?.inputLable}
                 >
                     {label}
                 </label>
             )}
             <input
-                value={value}
-                onChange={changeValue}
-                placeholder={placeholder}
-                className={className}
-                type={type}
+                className={classNames("input__root", className)}
                 id={id}
                 name={name}
-                style={styles?.input}
                 ref={ref}
+                style={styles?.inputRoot}
+                {...inputAttrs}
             />
         </div>
     );

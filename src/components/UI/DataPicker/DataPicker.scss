@@ -1,0 +1,33 @@
+.datapicker {
+    position: relative;
+    background-color: $dropdown-header-bg-color;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    width: fit-content;
+    width: 500px;
+
+    &__ranges {
+        background-color: $dropdown-list-bg-color;
+        display: none;
+        padding: 5px 10px;
+        width: 500px;
+        position: absolute;
+        z-index: 10;
+    }
+
+    &_open {
+        border-radius: 10px 10px 0 0;
+
+        .datapicker {
+            &__ranges {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                border-radius: 0 0 10px 10px;
+                padding: 10px 15px;
+            }
+        }
+    }
+}

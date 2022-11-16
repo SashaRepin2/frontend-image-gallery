@@ -4,9 +4,12 @@ import classNames from "classnames";
 import ReactPaginate from "react-paginate";
 
 import Gallery from "@components/Gallery";
+import DataPicker from "@components/UI/DataPicker";
+import TDateRange from "@components/UI/DataPicker/interfaces/Range";
 import Dropdown from "@components/UI/Dropdown";
 import { TDropdownOption } from "@components/UI/Dropdown/components/Option";
 import Empty from "@components/UI/Empty";
+import Input from "@components/UI/Input";
 import Loader from "@components/UI/Loader";
 
 import useAppDispatch from "@hooks/useAppDispatch";
@@ -51,6 +54,12 @@ const options = [
 
 const HomePage = () => {
     const dispatch = useAppDispatch();
+    const [inputValue, setInputValue] = useState<string>("");
+    const [dataPickerValue, setDataPickerValue] = useState<TDateRange>([
+        1000,
+        new Date().getFullYear(),
+    ]);
+
     const { paintings, isLoading, limitItems, countItems, error } =
         useAppSelector((state) => state.paintings);
 
@@ -73,6 +82,31 @@ const HomePage = () => {
 
     return (
         <div className={"page-home shadow"}>
+            <Input
+                value={inputValue}
+                placeholder={"Название картины"}
+                onChange={(event) => setInputValue(event.target.value)}
+                styles={{
+                    input: {
+                        marginBottom: "10px",
+                    },
+                }}
+            />
+
+            <Dropdown
+                selected={selectvalue}
+                placeholder={"Авторы"}
+                options={options}
+                onChangeOption={(option) => {
+                    setSelectValue(option);
+                }}
+            />
+
+            <DataPicker
+                range={dataPickerValue}
+                onChangeRange={(value) => setDataPickerValue(value)}
+            />
+
             {isLoading ? (
                 <Loader
                     position={"absolute"}
@@ -82,18 +116,15 @@ const HomePage = () => {
                     }}
                 />
             ) : (
-                <>
-                    <Dropdown
-                        selected={selectvalue}
-                        placeholder={"Авторы"}
-                        options={options}
-                        onChangeOption={(option) => {
-                            setSelectValue(option);
-                        }}
-                    />
-
+                <div className={"page-home__gallery-container"}>
                     {error ? (
-                        <Empty content={error} />
+                        <Empty
+                            content={error}
+                            styles={{
+                                justifySelf: "center",
+                                alignSelf: "flex-start",
+                            }}
+                        />
                     ) : (
                         <>
                             <Gallery paintings={paintings} />
@@ -113,7 +144,7 @@ const HomePage = () => {
                             />
                         </>
                     )}
-                </>
+                </div>
             )}
         </div>
     );

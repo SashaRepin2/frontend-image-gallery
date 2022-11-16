@@ -8,7 +8,7 @@ interface ILoaderProps {
 }
 
 const Loader: FC<ILoaderProps> = (props) => {
-    const { position, style } = props;
+    const { position = "absolute", style } = props;
 
     return (
         <div className={"spinner"}>
@@ -30,10 +30,6 @@ const Loader: FC<ILoaderProps> = (props) => {
             </svg>
         </div>
     );
-};
-
-Loader.defaultProps = {
-    position: "absolute",
 };
 
 export default Loader;
