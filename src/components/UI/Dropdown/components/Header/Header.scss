@@ -20,6 +20,24 @@
         white-space: nowrap;
     }
 
+    &__settings {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    &__clear {
+        background-color: transparent;
+        border: 0px;
+        margin-left: 5px;
+        outline: 0px;
+        svg {
+            fill: #fff;
+            height: 20px;
+            width: 20px;
+        }
+    }
+
     &__toggler {
         background-color: transparent;
         border: 0px;
@@ -29,8 +47,8 @@
 
         svg {
             fill: #fff;
-            height: 16px;
-            width: 16px;
+            height: 20px;
+            width: 20px;
         }
     }
 

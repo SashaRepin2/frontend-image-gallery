@@ -10,7 +10,12 @@ const DropdownListOptions: FC<IDropdownListOptionsProps> = (props) => {
     const { children } = props;
 
     return (
-        <div className={"dropdown__list-wrapper"}>
+        <div
+            className={"dropdown__list-wrapper"}
+            onClick={(e) => {
+                e.stopPropagation();
+            }}
+        >
             <ul className={"dropdown__list-options"}>{children}</ul>
         </div>
     );
