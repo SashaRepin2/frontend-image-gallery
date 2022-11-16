@@ -26,6 +26,19 @@ const authorsReducer = (
                 ...state,
                 isLoading: true,
             };
+        case AuthorsActionTypes.REQUEST_SUCCESS: {
+            return {
+                ...state,
+                isLoading: false,
+                authors: [...action.payload.authors],
+            };
+        }
+        case AuthorsActionTypes.REQUEST_FAILURE: {
+            return {
+                ...state,
+                isLoading: false,
+            };
+        }
         default:
             return state;
     }

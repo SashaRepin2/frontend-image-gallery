@@ -13,7 +13,6 @@ export type TPaintingsFilters = {
 export interface IPaintingsState {
     paintings: IPainting[];
     isLoading: boolean;
-    filters: TPaintingsFilters;
     countItems: number;
     limitItems: number;
     error: string | null;
@@ -24,13 +23,6 @@ export const initPaintingsState: IPaintingsState = {
     isLoading: true,
     countItems: 1,
     limitItems: 10,
-    filters: {
-        byPaintingName: "",
-        byAuthorName: "",
-        byLocation: "",
-        byStartYear: "",
-        byEndYear: "",
-    },
     error: null,
 };
 
@@ -40,16 +32,17 @@ const paintingReducer = (
 ): IPaintingsState => {
     switch (action.type) {
         case PaintingsActionTypes.REQUEST_LOADING: {
-            const { limits, filters } = action.payload;
-
+            const { limits } = action.payload;
+            console.log("12");
             return {
                 ...state,
                 limitItems: limits,
-                filters: filters,
                 isLoading: true,
             };
         }
-        case PaintingsActionTypes.REQUEST_SUCCESS:
+        case PaintingsActionTypes.REQUEST_SUCCESS: {
+            console.log("123");
+
             return {
                 ...state,
                 paintings: [...action.payload.paintings],
@@ -57,7 +50,9 @@ const paintingReducer = (
                 isLoading: false,
                 error: null,
             };
+        }
         case PaintingsActionTypes.REQUEST_FAILURE:
+            console.log("1234");
             return {
                 ...state,
                 isLoading: false,

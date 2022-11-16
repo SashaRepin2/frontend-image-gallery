@@ -1,37 +1,34 @@
-import { put, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery } from "redux-saga/effects";
 
 import {
-    AuthorsActionTypes,
-    RequestLoadingAction,
-} from "@store/actions/authors";
+    authorsReqFailureAction,
+    authorsReqSuccessAction,
+} from "@store/action-creators/authors";
+import { AuthorsActionTypes } from "@store/actions/authors";
 
 import authorsApi from "@api/authorsApi";
 
 import IAuthor from "@interfaces/IAuthor";
 
-export function* workerFetchPaintings(action: RequestLoadingAction) {
+export function* workerRequestAllAuthors() {
     try {
-        const { page, limits, search } = action.payload;
+        const authors: IAuthor[] = yield call(authorsApi.getAll);
 
-        const authors: IAuthor[] = yield authorsApi.getAll();
-
-        yield put({
-            type: AuthorsActionTypes.REQUEST_SUCCESS,
-            payload: {
-                authors: authors,
-            },
-        });
+        yield put(
+            authorsReqSuccessAction({
+                authors,
+            }),
+        );
     } catch (e) {
         const { message } = e as Error;
-        console.log(message);
 
-        yield put({
-            type: AuthorsActionTypes.REQUEST_FAILURE,
-            payload: "Произошла ошибка!",
-        });
+        yield put(authorsReqFailureAction("Произошла ошибка!"));
     }
 }
 
-export function* watchLoadDataSaga() {
-    yield takeEvery(AuthorsActionTypes.REQUEST_LOADING, workerFetchPaintings);
+export function* watcherAuthorsSaga() {
+    yield takeEvery(
+        AuthorsActionTypes.REQUEST_LOADING,
+        workerRequestAllAuthors,
+    );
 }
