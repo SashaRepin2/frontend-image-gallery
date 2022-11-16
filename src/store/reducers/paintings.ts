@@ -5,7 +5,6 @@ import { PaintingsActionTypes, TPaintingsActions } from "../actions/paintings";
 export interface IPaintingsState {
     paintings: IPainting[];
     isLoading: boolean;
-    search: string;
     countItems: number;
     limitItems: number;
     error: string | null;
@@ -16,7 +15,6 @@ export const initPaintingsState: IPaintingsState = {
     isLoading: true,
     countItems: 1,
     limitItems: 10,
-    search: "",
     error: null,
 };
 
@@ -26,16 +24,17 @@ const paintingReducer = (
 ): IPaintingsState => {
     switch (action.type) {
         case PaintingsActionTypes.REQUEST_LOADING: {
-            const { limits, search } = action.payload;
-
+            const { limits } = action.payload;
+            console.log("12");
             return {
                 ...state,
                 limitItems: limits,
-                search: search,
                 isLoading: true,
             };
         }
-        case PaintingsActionTypes.REQUEST_SUCCESS:
+        case PaintingsActionTypes.REQUEST_SUCCESS: {
+            console.log("123");
+
             return {
                 ...state,
                 paintings: [...action.payload.paintings],
@@ -43,7 +42,9 @@ const paintingReducer = (
                 isLoading: false,
                 error: null,
             };
+        }
         case PaintingsActionTypes.REQUEST_FAILURE:
+            console.log("1234");
             return {
                 ...state,
                 isLoading: false,

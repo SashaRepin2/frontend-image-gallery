@@ -1,38 +1,43 @@
-import { put, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery } from "redux-saga/effects";
 
+import {
+    paintingsReqFailureAction,
+    paintingsReqSuccessAction,
+} from "@store/action-creators/paintings";
 import {
     PaintingsActionTypes,
     RequestLoadingAction,
 } from "@store/actions/paintings";
 
-import paintingsApi, { IGetAllPaitingsResponse } from "@api/paintingsApi";
+import paintingsApi from "@api/paintingsApi";
 
 export function* workerRequestPaintings(action: RequestLoadingAction) {
     try {
-        const { page, limits, search } = action.payload;
+        const { page, limits, filters } = action.payload;
 
-        const { data, count }: IGetAllPaitingsResponse =
-            yield paintingsApi.getAll(page, limits, search);
+        const { data, count } = yield call(
+            paintingsApi.getAll,
+            page + 1,
+            limits,
+            filters,
+        );
 
-        yield put({
-            type: PaintingsActionTypes.REQUEST_SUCCESS,
-            payload: {
+        yield put(
+            paintingsReqSuccessAction({
                 paintings: data,
                 countItems: count,
-            },
-        });
+            }),
+        );
     } catch (e) {
         const { message } = e as Error;
-        console.log(message);
 
-        yield put({
-            type: PaintingsActionTypes.REQUEST_FAILURE,
-            payload: "Произошла ошибка!",
-        });
+        yield put(
+            paintingsReqFailureAction(`Произошла ошибка! Ошибка: ${message}`),
+        );
     }
 }
 
-export function* watcherRequestData() {
+export function* watcherPaintingsData() {
     yield takeEvery(
         PaintingsActionTypes.REQUEST_LOADING,
         workerRequestPaintings,

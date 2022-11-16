@@ -3,8 +3,10 @@ import IAuthor from "@interfaces/IAuthor";
 import { instanceAxios } from "./rootApi";
 
 class authorsApi {
-    static getAll() {
-        return instanceAxios.get<IAuthor[]>("/authors");
+    static async getAll() {
+        const response = await instanceAxios.get<IAuthor[]>("/authors");
+
+        return response.data;
     }
 
     static getOne(id: number) {

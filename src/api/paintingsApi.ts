@@ -1,4 +1,5 @@
 import IPainting from "@interfaces/IPainting";
+import { IPaintingsFilters } from "@interfaces/IPaintingsFilters";
 
 import { instanceAxios } from "./rootApi";
 
@@ -11,9 +12,9 @@ export interface IGetAllPaitingsResponse {
 
 class paintingsApi {
     static async getAll(
-        page?: number,
-        limits?: number,
-        search?: string,
+        page: number,
+        limits: number,
+        filters: IPaintingsFilters,
     ): Promise<IGetAllPaitingsResponse> {
         const response = await instanceAxios.get<IGetAllPaitingsResponse>(
             "/paintings",
@@ -21,7 +22,11 @@ class paintingsApi {
                 params: {
                     page,
                     limits,
-                    search,
+                    search: filters.byPaintingName,
+                    author: filters.byAuthorName,
+                    location: filters.byLocation,
+                    startYear: filters.byStartYear,
+                    endYear: filters.byEndYear,
                 },
             },
         );

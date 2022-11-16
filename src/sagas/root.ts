@@ -1,5 +1,13 @@
-import { watcherRequestData } from "./paintings";
+import { all, fork } from "redux-saga/effects";
+
+import { watcherAuthorsSaga } from "./authors";
+import { watcherLocationsSaga } from "./locations";
+import { watcherPaintingsData } from "./paintings";
 
 export default function* rootSaga() {
-    yield watcherRequestData();
+    yield all([
+        fork(watcherPaintingsData),
+        fork(watcherLocationsSaga),
+        fork(watcherAuthorsSaga),
+    ]);
 }

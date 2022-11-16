@@ -1,3 +1,5 @@
+import IAuthor from "@interfaces/IAuthor";
+
 export enum AuthorsActionTypes {
     REQUEST_LOADING = "AUTHORS/REQUEST",
     REQUEST_SUCCESS = "AUTHORS/REQUEST_SUCCESS",
@@ -6,15 +8,13 @@ export enum AuthorsActionTypes {
 
 export interface RequestLoadingAction {
     type: AuthorsActionTypes.REQUEST_LOADING;
-    payload: {
-        page: number;
-        search: string;
-        limits: number;
-    };
 }
 
 export interface RequestSuccessAction {
     type: AuthorsActionTypes.REQUEST_SUCCESS;
+    payload: {
+        authors: IAuthor[];
+    };
 }
 
 export interface RequestFailureAction {

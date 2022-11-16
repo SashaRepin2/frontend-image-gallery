@@ -1,4 +1,5 @@
 import IPainting from "@interfaces/IPainting";
+import { IPaintingsFilters } from "@interfaces/IPaintingsFilters";
 
 export enum PaintingsActionTypes {
     REQUEST_LOADING = "PAINTINGS/REQUEST_LOADING",
@@ -11,7 +12,7 @@ export interface RequestLoadingAction {
     payload: {
         page: number;
         limits: number;
-        search: string;
+        filters: IPaintingsFilters;
     };
 }
 

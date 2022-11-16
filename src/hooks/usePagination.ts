@@ -13,6 +13,7 @@ function usePagination(initPage = 0, isDisabled = false) {
 
     return {
         page,
+        setPage,
         onChangePageHandler,
     };
 }
