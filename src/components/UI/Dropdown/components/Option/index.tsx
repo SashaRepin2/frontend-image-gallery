@@ -19,7 +19,6 @@ const DropdownOption: FC<IDropdownOptionProps> = (props) => {
     const { option, isSelected = false, onClick } = props;
 
     function onClickHandler(event: React.MouseEvent<HTMLElement, MouseEvent>) {
-        event.stopPropagation();
         onClick(option);
     }
 

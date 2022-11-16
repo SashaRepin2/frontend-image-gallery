@@ -15,7 +15,7 @@ interface IDropdownProps {
     selected: TDropdownOption | null;
     options: TDropdownOption[];
     placeholder: string;
-    onChangeOption: (option: TDropdownOption) => void;
+    onChangeOption: (option: TDropdownOption | null) => void;
 }
 
 const Dropdown: FC<IDropdownProps> = (props) => {
@@ -27,6 +27,7 @@ const Dropdown: FC<IDropdownProps> = (props) => {
         isOptionSelected,
         onCloseHandler,
         onToggleHandler,
+        onClearHandler,
     } = useDropdown(selected, onChangeOption);
 
     const { ref } = useClickOutside<HTMLDivElement>(onCloseHandler);
@@ -55,6 +56,7 @@ const Dropdown: FC<IDropdownProps> = (props) => {
             <DropdownHeader
                 placeholder={selected ? selected.label : placeholder}
                 onToggle={onToggleHandler}
+                onClear={onClearHandler}
             />
             <DropdownListOptions>{memoDropdownOptions}</DropdownListOptions>
         </div>
