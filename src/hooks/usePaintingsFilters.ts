@@ -48,8 +48,8 @@ function usePaintingsFilters(page: number, setPage: (page: number) => void) {
                 limits: limitsFilter,
                 page,
                 filters: {
-                    byAuthorName: authorNameFilter,
-                    byLocation: locationNameFilter,
+                    byAuthorName: authorNameFilter?.label,
+                    byLocation: locationNameFilter?.label,
                     byStartYear: yearsFilter[0],
                     byEndYear: yearsFilter[1],
                     byPaintingName: debouncePaitingNameFilter,
