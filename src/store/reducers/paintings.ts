@@ -2,14 +2,6 @@ import IPainting from "@interfaces/IPainting";
 
 import { PaintingsActionTypes, TPaintingsActions } from "../actions/paintings";
 
-export type TPaintingsFilters = {
-    byPaintingName: string;
-    byAuthorName: string;
-    byLocation: string;
-    byStartYear: string;
-    byEndYear: string;
-};
-
 export interface IPaintingsState {
     paintings: IPainting[];
     isLoading: boolean;

@@ -1,19 +1,12 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 
 import DataPicker from "@components/UI/DataPicker";
 import Dropdown from "@components/UI/Dropdown";
 import Input from "@components/UI/Input";
 
-import useAppDispatch from "@hooks/useAppDispatch";
-import useAppSelector from "@hooks/useAppSelector";
 import usePaintingsFilters from "@hooks/usePaintingsFilters";
 
-import { getAuthorFilterOptions } from "@utils/getAuthorFilterOptions";
-
 import { selectorOptionsLimits } from "@consts/selectorOptions";
-
-import { paintingsReqLoadingAction } from "@store/action-creators/paintings";
-import { AuthorsActionTypes } from "@store/actions/authors";
 
 import "./Filters.scss";
 
@@ -23,39 +16,22 @@ interface IFiltersProps {
 }
 
 const Filters: FC<IFiltersProps> = (props) => {
-    // const { authors } = useAppSelector((state) => state.authors);
     const { page, changePage } = props;
 
-    const dispatch = useAppDispatch();
     const {
+        authorNameFilter,
+        locationNameFilter,
+        authorsOptions,
+        locationOptions,
+        yearsFilter,
         limitsFilter,
         paitingNameFilter,
-        debouncePaitingNameFilter,
+        setAuthorNameFilter,
+        setLocationNameFilter,
+        setYearsFilter,
         setPaitingNameFilter,
         setLimitsFilter,
     } = usePaintingsFilters(page, changePage);
-
-    useEffect(() => {
-        dispatch(
-            paintingsReqLoadingAction({
-                limits: limitsFilter,
-                page,
-                filters: {
-                    byAuthorName: "",
-                    byEndYear: "",
-                    byLocation: "",
-                    byStartYear: "",
-                    byPaintingName: debouncePaitingNameFilter,
-                },
-            }),
-        );
-    }, [dispatch, page, debouncePaitingNameFilter, limitsFilter]);
-
-    useEffect(() => {
-        dispatch({
-            type: AuthorsActionTypes.REQUEST_LOADING,
-        });
-    }, []);
 
     return (
         <div className={"filters shadow"}>
@@ -77,32 +53,29 @@ const Filters: FC<IFiltersProps> = (props) => {
                 }}
             />
 
-            {/* <Dropdown
-                selected={{
-                    value: String(limitsFilter),
-                    label: String(limitsFilter),
-                }}
+            <Dropdown
+                selected={authorNameFilter}
                 placeholder={"Авторы"}
-                options={getAuthorFilterOptions(authors)}
+                options={authorsOptions}
                 onChangeOption={(option) => {
-                    console.log(option);
+                    setAuthorNameFilter(option);
                 }}
-            /> */}
+            />
 
-            {/* <DataPicker
-                range={[
-                    Number(paintingsFilters.byStartYear),
-                    Number(paintingsFilters.byEndYear),
-                ]}
-                onChangeRange={(value) =>
-                    setPaintingsFilters({
-                        ...paintingsFilters,
-                        byStartYear: String(value[0]),
-                        byEndYear: String(value[1]),
-                    })
-                }
+            <Dropdown
+                selected={locationNameFilter}
+                placeholder={"Местоположение"}
+                options={locationOptions}
+                onChangeOption={(option) => {
+                    setLocationNameFilter(option);
+                }}
+            />
+
+            <DataPicker
+                range={yearsFilter}
+                onChangeRange={(value) => setYearsFilter(value)}
                 title={"Год создания"}
-            /> */}
+            />
         </div>
     );
 };

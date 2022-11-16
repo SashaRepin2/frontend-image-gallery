@@ -1,6 +1,5 @@
-import { TPaintingsFilters } from "@store/reducers/paintings";
-
 import IPainting from "@interfaces/IPainting";
+import { IPaintingsFilters } from "@interfaces/IPaintingsFilters";
 
 import { instanceAxios } from "./rootApi";
 
@@ -15,7 +14,7 @@ class paintingsApi {
     static async getAll(
         page: number,
         limits: number,
-        filters: TPaintingsFilters,
+        filters: IPaintingsFilters,
     ): Promise<IGetAllPaitingsResponse> {
         const response = await instanceAxios.get<IGetAllPaitingsResponse>(
             "/paintings",
