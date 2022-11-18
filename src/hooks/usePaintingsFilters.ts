@@ -31,12 +31,13 @@ function usePaintingsFilters(page: number, setPage: (page: number) => void) {
     const [yearsFilter, setYearsFilter] = useState<TDateRange>([1000, 2000]);
 
     const debouncePaitingNameFilter = useDebounce<string>(paitingNameFilter);
+    const debounceYearsFilter = useDebounce<string>(yearsFilter);
 
     useEffect(() => {
         setPage(0);
     }, [
         debouncePaitingNameFilter,
-        yearsFilter,
+        debounceYearsFilter,
         limitsFilter,
         authorNameFilter,
         locationNameFilter,
@@ -51,8 +52,8 @@ function usePaintingsFilters(page: number, setPage: (page: number) => void) {
                 filters: {
                     byAuthorName: authorNameFilter?.label,
                     byLocation: locationNameFilter?.label,
-                    byStartYear: yearsFilter[0],
-                    byEndYear: yearsFilter[1],
+                    byStartYear: debounceYearsFilter[0],
+                    byEndYear: debounceYearsFilter[1],
                     byPaintingName: debouncePaitingNameFilter,
                 },
             }),
@@ -61,7 +62,7 @@ function usePaintingsFilters(page: number, setPage: (page: number) => void) {
         dispatch,
         page,
         debouncePaitingNameFilter,
-        yearsFilter,
+        debounceYearsFilter,
         limitsFilter,
         authorNameFilter,
         locationNameFilter,
@@ -84,6 +85,7 @@ function usePaintingsFilters(page: number, setPage: (page: number) => void) {
         authorNameFilter,
         locationNameFilter,
         debouncePaitingNameFilter,
+        debounceYearsFilter,
         setPaitingNameFilter,
         setLimitsFilter,
         setYearsFilter,
