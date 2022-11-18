@@ -1,6 +1,7 @@
 import { lazy } from "react";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import GoTopBtn from "@components/UI/GoTopBtn";
 
@@ -11,6 +12,7 @@ import {
 } from "@consts/routes";
 
 import "./styles/index.scss";
+import "react-toastify/dist/ReactToastify.css";
 
 const HomePage = lazy(() => import("./pages/Home"));
 const NotFoundPage = lazy(() => import("./pages/NotFound"));
@@ -35,6 +37,19 @@ function App() {
                 </Routes>
             </main>
             <GoTopBtn />
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                limit={5}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </BrowserRouter>
     );
 }
