@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { call, put, takeEvery } from "redux-saga/effects";
 
 import {
@@ -20,7 +21,16 @@ export function* workerRequestAllLocations() {
             }),
         );
     } catch (e) {
-        const { message } = e as Error;
+        toast.error("Не удалось загрузить фильтры локаций", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
 
         yield put(locationsReqFailureAction("Произошла ошибка!"));
     }

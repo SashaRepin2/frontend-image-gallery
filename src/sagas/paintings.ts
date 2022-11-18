@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { call, put, takeEvery } from "redux-saga/effects";
 
 import {
@@ -29,11 +30,7 @@ export function* workerRequestPaintings(action: RequestLoadingAction) {
             }),
         );
     } catch (e) {
-        const { message } = e as Error;
-
-        yield put(
-            paintingsReqFailureAction(`Произошла ошибка! Ошибка: ${message}`),
-        );
+        yield put(paintingsReqFailureAction("Произошла ошибка!"));
     }
 }
 
