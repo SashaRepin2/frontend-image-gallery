@@ -9,9 +9,9 @@ export const locationsReqLoadingAction = createAction(
     LocationsActionTypes.REQUEST_LOADING,
 );
 
-export const locationsReqSuccessAction = createAction<ILocation[]>(
-    LocationsActionTypes.REQUEST_SUCCESS,
-);
+export const locationsReqSuccessAction = createAction<{
+    locations: ILocation[];
+}>(LocationsActionTypes.REQUEST_SUCCESS);
 
 export const locationsReqFailureAction = createAction<string>(
     LocationsActionTypes.REQUEST_FAILURE,

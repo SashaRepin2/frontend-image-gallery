@@ -8,19 +8,11 @@ import ILocation from "@interfaces/ILocation";
 export interface ILocationsState {
     locations: ILocation[];
     isLoading: boolean;
-    search: string;
-    countItems: number;
-    limitItems: number;
-    error: string | null;
 }
 
 export const initLocationsState: ILocationsState = {
     locations: [],
     isLoading: false,
-    countItems: 1,
-    limitItems: 1,
-    error: null,
-    search: "",
 };
 
 const locationsReducer = (
@@ -34,14 +26,13 @@ const locationsReducer = (
                 isLoading: true,
             };
         case LocationsActionTypes.REQUEST_SUCCESS: {
-            const { locations, countItems, limitItems } = action.payload;
+            const { locations } = action.payload;
+            console.log(locations);
 
             return {
                 ...state,
-                locations: [...locations],
-                countItems: countItems,
-                limitItems: limitItems,
                 isLoading: false,
+                locations: [...locations],
             };
         }
         case LocationsActionTypes.REQUEST_FAILURE:

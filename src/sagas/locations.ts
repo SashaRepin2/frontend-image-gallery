@@ -14,7 +14,11 @@ export function* workerRequestAllLocations() {
     try {
         const locations: ILocation[] = yield call(locatinsApi.getAll);
 
-        yield put(locationsReqSuccessAction(locations));
+        yield put(
+            locationsReqSuccessAction({
+                locations,
+            }),
+        );
     } catch (e) {
         const { message } = e as Error;
 

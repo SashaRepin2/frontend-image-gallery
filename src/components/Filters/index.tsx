@@ -49,7 +49,7 @@ const Filters: FC<IFiltersProps> = (props) => {
                 placeholder={"Кол-во"}
                 options={selectorOptionsLimits}
                 onChangeOption={(option) => {
-                    setLimitsFilter(Number(option.value));
+                    setLimitsFilter(Number(option?.value));
                 }}
             />
 
