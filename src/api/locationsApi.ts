@@ -3,8 +3,10 @@ import ILocation from "@interfaces/ILocation";
 import { instanceAxios } from "./rootApi";
 
 class locatinsApi {
-    static getAll() {
-        return instanceAxios.get<ILocation[]>(`/locations`);
+    static async getAll() {
+        const response = await instanceAxios.get<ILocation[]>(`/locations`);
+
+        return response.data;
     }
 
     static getOne(id: number) {

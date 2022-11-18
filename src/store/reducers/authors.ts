@@ -5,15 +5,11 @@ import IAuthor from "@interfaces/IAuthor";
 export interface IAuthorsState {
     authors: IAuthor[];
     isLoading: boolean;
-    countItems: number;
-    limitItems: number;
 }
 
 export const initAuthorsState: IAuthorsState = {
     authors: [],
     isLoading: false,
-    countItems: 1,
-    limitItems: 1,
 };
 
 const authorsReducer = (
@@ -27,10 +23,11 @@ const authorsReducer = (
                 isLoading: true,
             };
         case AuthorsActionTypes.REQUEST_SUCCESS: {
+            const { authors } = action.payload;
             return {
                 ...state,
                 isLoading: false,
-                authors: [...action.payload.authors],
+                authors: [...authors],
             };
         }
         case AuthorsActionTypes.REQUEST_FAILURE: {

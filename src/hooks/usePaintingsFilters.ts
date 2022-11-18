@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import TDateRange from "@components/UI/DataPicker/interfaces/Range";
 import { TDropdownOption } from "@components/UI/Dropdown/components/Option";
 
+import { authorsReqLoadingAction } from "@store/action-creators/authors";
+import { locationsReqLoadingAction } from "@store/action-creators/locations";
 import { paintingsReqLoadingAction } from "@store/action-creators/paintings";
-import { AuthorsActionTypes } from "@store/actions/authors";
 import { selectAuthorsForFilters } from "@store/selectors/authors";
 import { selectLocationsForFilters } from "@store/selectors/locations";
 
@@ -67,9 +68,11 @@ function usePaintingsFilters(page: number, setPage: (page: number) => void) {
     ]);
 
     useEffect(() => {
-        dispatch({
-            type: AuthorsActionTypes.REQUEST_LOADING,
-        });
+        dispatch(authorsReqLoadingAction());
+    }, []);
+
+    useEffect(() => {
+        dispatch(locationsReqLoadingAction());
     }, []);
 
     return {

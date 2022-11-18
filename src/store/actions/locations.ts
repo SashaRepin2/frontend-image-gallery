@@ -8,19 +8,12 @@ export enum LocationsActionTypes {
 
 export interface RequestLoadingAction {
     type: LocationsActionTypes.REQUEST_LOADING;
-    payload: {
-        page: number;
-        limits: number;
-        search: string;
-    };
 }
 
 export interface RequestSuccessAction {
     type: LocationsActionTypes.REQUEST_SUCCESS;
     payload: {
         locations: ILocation[];
-        countItems: number;
-        limitItems: number;
     };
 }
 
