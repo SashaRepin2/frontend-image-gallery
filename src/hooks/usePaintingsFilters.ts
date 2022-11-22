@@ -70,9 +70,6 @@ function usePaintingsFilters(page: number, setPage: (page: number) => void) {
 
     useEffect(() => {
         dispatch(authorsReqLoadingAction());
-    }, []);
-
-    useEffect(() => {
         dispatch(locationsReqLoadingAction());
     }, []);
 
